@@ -11,9 +11,9 @@ Per avviare il progetto è necessario avere installato python (versione 3.6.3).
 
 ### Windows:
 
-Per installare Python su Windows e' possibile utilizzare l'installer ottenibile a [questo indirizzo](https://www.python.org/downloads/).
+Per installare Python su Windows è possibile utilizzare l'installer ottenibile a [questo indirizzo](https://www.python.org/downloads/).
 
-**NB:** Installare anche `pip` in quanto sara' necessario per installare le dipendenze del progetto.
+**NB:** Installare anche `pip` in quanto sarà necessario per installare le dipendenze del progetto.
 
 
 ### macOS - Linux:
@@ -43,12 +43,12 @@ Dopo aver installato pyenv, installare python 3.6.3
 $ pyenv install 3.6.3
 ```
 
-Nel repository del progetto dovrebbe essere già presente il file `.python-version` che permettere di utilizzare la versione di python corretta. Qualore non fosse presente utilizzare il comando `pyenv local 3.6.3`.
+Nel repository del progetto dovrebbe essere già presente il file `.python-version` che permettere di utilizzare la versione di python corretta. Qualore non fosse presente, utilizzare il comando `pyenv local 3.6.3`.
 
 Installazione
 -------------
 
-Installare tutte le dipendenze del progetto:
+Installare tutte le dipendenze del progetto (potrebbero essere necessari i privilegi di amministratore):
 ```
 $ pip install -r requirements.txt
 ```
@@ -65,10 +65,9 @@ Avviare il server:
 $ ./manage.py runserver
 ```
 
-Authors
--------
+Studenti
+--------
 
    * Matteo Colella - 794028
    * Matteo Costantini - 795125
    * Gerosa Dario 793636
-
