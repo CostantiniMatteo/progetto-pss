@@ -68,7 +68,7 @@ $ ./manage.py runserver
 Authors
 -------
 
-   * Matteo Colella - 79xxxx
+   * Matteo Colella - 794028
    * Matteo Costantini - 795125
    * Gerosa Dario 793636
 
