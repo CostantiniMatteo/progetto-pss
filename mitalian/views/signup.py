@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse
 
-from ..forms.signup import SignupForm
 
 def signup(request):
     if request.method == 'POST':
