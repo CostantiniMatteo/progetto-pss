@@ -17,12 +17,12 @@ from django.urls import path
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
-from . import views
+from .views import index, signup
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', index, name='index'),
     path('login/', auth_views.login, {'template_name': 'login.html'}, name='login'),
     path('logout/', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
-    path('', views.index, name='index'),
-
+    path('signup/', signup, name='signup'),
 ]
