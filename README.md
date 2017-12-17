@@ -60,6 +60,13 @@ $ ./manage.py makemigrations
 $ ./manage.py migrate
 ```
 
+Per creare un utente amministratore:
+```
+$ ./manage.py createsuperuser
+```
+Il pannello di amministrazione è raggiungibile alla pagina `/admin`.
+
+
 Avviare il server:
 ```
 $ ./manage.py runserver
