@@ -58,6 +58,8 @@ Creare il database:
 ```
 $ ./manage.py makemigrations
 $ ./manage.py migrate
+
+# In alternativa python manage.py
 ```
 
 Per creare un utente amministratore:
@@ -67,7 +69,7 @@ $ ./manage.py createsuperuser
 Il pannello di amministrazione è raggiungibile alla pagina `/admin`.
 
 
-Avviare il server:
+Avviare il server (raggiungibile a `localhost:8000`):
 ```
 $ ./manage.py runserver
 ```
