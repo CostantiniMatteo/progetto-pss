@@ -8,4 +8,3 @@ django.setup()
 
 from django.contrib.auth.models import User
 from mitalian.models import Collection, Item
-
