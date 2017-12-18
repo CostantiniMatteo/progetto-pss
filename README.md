@@ -33,6 +33,13 @@ $ curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pye
 $ pyenv update
 ```
 
+In `~/.bashrc` aggiungere:
+```
+export PATH="~/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+```
+
 Ulteriori informazioni sull'installazione di pyenv [qui](https://github.com/pyenv/pyenv-installer).
 
 ##### Installazione python 3.6.3:
