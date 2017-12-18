@@ -53,6 +53,10 @@ Installare tutte le dipendenze del progetto (potrebbero essere necessari i privi
 $ pip install -r requirements.txt
 ```
 
+
+TODO: Installare PostgreSQL
+---------------------------
+
 Creare il database:
 
 ```
