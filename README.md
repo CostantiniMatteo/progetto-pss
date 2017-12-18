@@ -1,5 +1,5 @@
 Processo e Sviluppo del Software - Labeling Immagini
-======================================================
+====================================================
 
 Assignment progettuale del corso di Processo e Sviluppo del Software.
 
@@ -66,6 +66,7 @@ Scaricare ed installare PostgreSQL a [questo indirizzo](https://www.postgresql.o
 $ sudo -u postgres createuser <username>
 
 $ sudo -u postgres psql
+
 psql=# alter user <username> with encrypted password '<password>';
 ```
 
