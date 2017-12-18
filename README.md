@@ -34,6 +34,7 @@ $ pyenv update
 ```
 
 In `~/.bashrc` aggiungere:
+
 ```
 export PATH="~/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
@@ -45,11 +46,9 @@ Ulteriori informazioni sull'installazione di pyenv [qui](https://github.com/pyen
 ##### Installazione python 3.6.3:
 
 Dopo aver installato pyenv, installare python 3.6.3
-
 ```
 $ pyenv install 3.6.3
 ```
-
 Nel repository del progetto dovrebbe essere già presente il file `.python-version` che permettere di utilizzare la versione di python corretta. Qualore non fosse presente, utilizzare il comando `pyenv local 3.6.3`.
 
 Installazione
@@ -61,11 +60,25 @@ $ pip install -r requirements.txt
 ```
 
 
-TODO: Installare PostgreSQL
----------------------------
+##### Installare PostgreSQL (DA RIVEDERE):
+Scaricare ed installare PostgreSQL a [questo indirizzo](https://www.postgresql.org/download/) e creare un utente con nome `admin` e password `admin`. Per creare l'utente:
+```
+$ sudo -u postgres createuser <username>
 
-Creare il database:
+$ sudo -u postgres psql
+psql=# alter user <username> with encrypted password '<password>';
+```
 
+##### Creare il database (DA RIVEDERE):
+
+```
+$ psql
+psql=# create database mitalian with owner admin;
+```
+
+##### Migrazioni:
+
+Creare ed applicare le migrazioni:
 ```
 $ ./manage.py makemigrations
 $ ./manage.py migrate
@@ -79,6 +92,7 @@ $ ./manage.py createsuperuser
 ```
 Il pannello di amministrazione è raggiungibile alla pagina `/admin`.
 
+##### Avvio:
 
 Avviare il server (raggiungibile a `localhost:8000`):
 ```
