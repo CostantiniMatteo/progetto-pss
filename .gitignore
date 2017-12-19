@@ -1,3 +1,4 @@
 .DS_STore
 db.sqlite3
 __pycache__
+*.pyc

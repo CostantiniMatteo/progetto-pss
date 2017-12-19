@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 
 {% block title %}Login{% endblock %}
-
+{% load material_form %} 
 {% block content %}
+<div style="width:50%; margin: auto;">
   <h2>Login</h2>
-  <form method="post">
+  <form class="form-horizontal" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Login</button>
+    <button type="submit" name="_submit" class="btn">Login</button>
   </form>
+<div> 
 {% endblock %}
