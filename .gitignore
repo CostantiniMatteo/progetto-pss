@@ -1,3 +1,3 @@
 .DS_STore
 db.sqlite3
-mitalian/__pycache__/
+__pycache__
