@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.http import HttpResponseRedirect
 
-from .views import index, signup, CollectionsView
+from .views import index, signup, CollectionsView, CollectionDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,6 +31,6 @@ urlpatterns = [
     path('collections/', CollectionsView.as_view(), name='collections'),
     # path('create-collection/', create_collection, name='create-collection'),
     # path('update-collection/', update_collection, name='update-collection'),
-    path('detail/<int:id>', lambda r, id: HttpResponseRedirect('/admin/'), name='detail'),
+    path('detail/<int:pk>', CollectionDetailView.as_view(), name='detail'),
     # path('item/', item, name='item'),
 ]
