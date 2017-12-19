@@ -9,17 +9,15 @@
     <h1>Mechanical Italian</h1>
     {% if user.is_authenticated %}
       Hi {{ user.username }}!
-      <a href="{% url 'logout' %}">logout</a>
+      <a href="{% url 'logout' %}">Logout</a>
     {% else %}
-      <a href="{% url 'login' %}">login</a>
-      <a href="{% url 'signup' %}">sign up</a>
+      <a href="{% url 'login' %}">Login</a>
+      <a href="{% url 'signup' %}">Sign Up</a>
     {% endif %}
   </header>
-  <hr>
   <main>
     {% block content %}
     {% endblock %}
   </main>
-  <hr>
 </body>
 </html>

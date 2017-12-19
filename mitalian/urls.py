@@ -16,19 +16,21 @@ Including another URLconf
 from django.urls import path
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
+from django.http import HttpResponseRedirect
 
-from .views import index, signup
+from .views import index, signup, CollectionsView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index, name='index'),
+    path('', lambda r: HttpResponseRedirect('home/'), name='root'),
+    path('home/', index, name='index'),
     path('login/', auth_views.login, {'template_name': 'login.html'}, name='login'),
     path('logout/', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
     path('signup/', signup, name='signup'),
     # TODO: Stub. Aggiungere gli identificatori per collection e items
-    # path('my-collections/', my_collections, name='my-collections'),
+    path('collections/', CollectionsView.as_view(), name='collections'),
     # path('create-collection/', create_collection, name='create-collection'),
     # path('update-collection/', update_collection, name='update-collection'),
-    # path('detail/', detail, name='detail'),
+    path('detail/<int:id>', lambda r, id: HttpResponseRedirect('/admin/'), name='detail'),
     # path('item/', item, name='item'),
 ]

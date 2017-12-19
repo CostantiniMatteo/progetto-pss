@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}My Collections{% endblock %}
+
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    {% if collections_list %}
+        <ul>
+        {% for collection in collections_list %}
+            <li><a href="{% url 'detail' collection.id %}">{{ collection.name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No collections are available.</p>
+    {% endif %}
+{% else %}
+    <p>You are not logged in. Please <a href="{%url 'login' %}">log in</a>
+{% endif %}
+
+{% endblock %}
