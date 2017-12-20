@@ -19,7 +19,7 @@ from django.contrib.auth import views as auth_views
 from django.http import HttpResponseRedirect
 
 from .views import index, signup, CollectionsView, CollectionDetailView
-from .views import create_collection, update_collection, item
+from .views import create_collection, update_collection, item, download_results
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,6 +31,7 @@ urlpatterns = [
     path('collections/', CollectionsView.as_view(), name='collections'),
     path('create-collection/', create_collection, name='create-collection'),
     path('update-collection/', update_collection, name='update-collection'),
+    path('download-results/<int:pk>', download_results, name='download-results'),
     path('detail/<int:pk>', CollectionDetailView.as_view(), name='detail'),
     path('item/<int:pk>', item, name='item'),
 ]

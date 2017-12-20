@@ -5,3 +5,4 @@ from .item import *
 from .my_collections import *
 from .signup import *
 from .update_collection import *
+from .download_results import *
