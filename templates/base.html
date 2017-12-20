@@ -3,20 +3,20 @@
 <head>
   {% load staticfiles %}
   {% load material_form %} 
-  <!--meta charset="utf-8">
+  <meta charset="utf-8">
   <title>{% block title %}Django Simple Login{% endblock %}</title>
-  <<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     {% include 'material/includes/material_css.html' %}
     <script src="{% static 'material/js/jquery.js' %}"></script>
     {% include 'material/includes/material_js.html' %}
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
 </head>
 <body>
-  <header>
-    <div style="width:50%; margin: auto;">
+  <div class="header">  
+    <header>      
       <h1 class="headerTitle">Mechanical Italian</h1>
       {% if user.is_authenticated %}
         Hi {{ user.username }}!
@@ -26,11 +26,11 @@
         <a href="{% url 'signup' %}">Sign Up</a>
       {% endif %}
     </header>
-  </div>
   <br>
   <main>
     {% block content %}
     {% endblock %}
   </main>
+  </div>
 </body>
 </html>
