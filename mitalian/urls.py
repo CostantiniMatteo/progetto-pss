@@ -19,6 +19,7 @@ from django.contrib.auth import views as auth_views
 from django.http import HttpResponseRedirect
 
 from .views import index, signup, CollectionsView, CollectionDetailView
+from .views import create_collection, update_collection, item
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,10 +28,9 @@ urlpatterns = [
     path('login/', auth_views.login, {'template_name': 'login.html'}, name='login'),
     path('logout/', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
     path('signup/', signup, name='signup'),
-    # TODO: Stub. Aggiungere gli identificatori per collection e items
     path('collections/', CollectionsView.as_view(), name='collections'),
-    # path('create-collection/', create_collection, name='create-collection'),
-    # path('update-collection/', update_collection, name='update-collection'),
+    path('create-collection/', create_collection, name='create-collection'),
+    path('update-collection/', update_collection, name='update-collection'),
     path('detail/<int:pk>', CollectionDetailView.as_view(), name='detail'),
-    # path('item/', item, name='item'),
+    path('item/<int:pk>', item, name='item'),
 ]
