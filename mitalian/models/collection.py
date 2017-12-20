@@ -7,6 +7,8 @@ class Collection(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     progress = models.IntegerField()
     labels = ArrayField(models.CharField(max_length=256))
+    link = models.URLField()
+    password_hash = models.TextField()
 
     def __str__(self):
         return self.name
