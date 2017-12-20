@@ -15,11 +15,15 @@ def create_collection(request):
             collection = form.save(commit=False)
             collection.user = request.user
             collection.progress = 0
-            password = User.objects.make_random_password()
-            collection.password_hash = make_password(password)
+            password = User.objects.make_random_password(length=10)
+            collection.password_hash = password
+
+            collection.save()
             collection.link = '/labelling/%d' % collection.pk
             collection.save()
-            return redirect('index')
+
+            # TODO: Redirect a update-collection
+            return redirect('../detail/{}'.format(collection.pk))
     else:
         form = CollectionForm()
 
