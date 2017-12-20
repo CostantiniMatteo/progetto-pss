@@ -20,4 +20,15 @@ header {
 label[for=id_username], label[for=id_password1], label[for=id_password1], label[for=id_password2] {
 	font-size: medium;
 }
+
+div .authentication {
+	position: absolute;
+	top: 50%;
+	left: 50%; 
+	trasform: translate(-50%, -50%);
+}
+
+.btn, .btn-success{
+	background-color: #5cb85c;
+	border-color: #4cae4c;
 }
