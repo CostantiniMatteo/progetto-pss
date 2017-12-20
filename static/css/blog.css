@@ -3,3 +3,21 @@ body {
 	font-family: 'Helvetica Neue', 'Arial', sans-serif;
 	background: #FAFAFA;
 }
+
+main, .header{
+	width: 50%; 
+	margin: auto;
+}
+
+header {
+	text-align: center
+}
+
+.helptext {
+	font-size: small;
+}
+
+label[for=id_username], label[for=id_password1], label[for=id_password1], label[for=id_password2] {
+	font-size: medium;
+}
+}

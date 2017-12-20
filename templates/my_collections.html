@@ -7,11 +7,16 @@
 
 {% if user.is_authenticated %}
     {% if collections_list %}
+    <div class="panel panel-default">
+        <div class="panel-heading">MyCollection</div>
         <ul>
         {% for collection in collections_list %}
-            <li><a href="{% url 'detail' collection.id %}">{{ collection.name }}</a></li>
+            <div class="panel-body">
+                <li><a href="{% url 'detail' collection.id %}">{{ collection.name }}</a></li>
+            </div>
         {% endfor %}
         </ul>
+    </div>
     {% else %}
         <p>No collections are available.</p>
     {% endif %}
