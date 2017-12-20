@@ -16,7 +16,7 @@ def create_collection(request):
             collection.user = request.user
             collection.progress = 0
             password = User.objects.make_random_password(length=10)
-            collection.password_hash = password
+            collection.password = password
 
             collection.save()
             collection.link = '/labelling/%d' % collection.pk
