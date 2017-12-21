@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load static %} 
+
 {% block title %}My Collections{% endblock %}
 
 
@@ -7,16 +9,24 @@
 
 {% if user.is_authenticated %}
     {% if collections_list %}
-    <div class="panel panel-default">
-        <div class="panel-heading">MyCollection</div>
-        <ul>
-        {% for collection in collections_list %}
-            <div class="panel-body">
-                <li><a href="{% url 'detail' collection.id %}">{{ collection.name }}</a></li>
-            </div>
-        {% endfor %}
-        </ul>
-    </div>
+        <div>
+            <p class="MyCollection">MyCollection</p>
+            {% for collection in collections_list %}
+                <div class="well well-lg" >
+                    <div class="nameColl"><a href="{% url 'detail' collection.id %}">{{ collection.name }}</a></div>
+                    <div class="Coll-info">
+                        <img src="{% static 'images/down-icon.png' %}" width="30" height="30" align="right">
+                        <div class="c100 p25 small">
+                          <div class="slice">
+                            <div class="bar"></div>
+                            <div class="fill"></div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </ul>
+        </div>
     {% else %}
         <p>No collections are available.</p>
     {% endif %}

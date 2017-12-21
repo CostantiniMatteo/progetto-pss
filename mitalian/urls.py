@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
+from django.conf.urls import include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.http import HttpResponseRedirect
@@ -34,4 +35,5 @@ urlpatterns = [
     path('download-results/<int:pk>', download_results, name='download-results'),
     path('detail/<int:pk>', CollectionDetailView.as_view(), name='detail'),
     path('item/<int:pk>', item, name='item'),
+    path('select2/', include('django_select2.urls')),
 ]
