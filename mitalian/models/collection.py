@@ -8,7 +8,7 @@ class Collection(models.Model):
     progress = models.IntegerField()
     labels = ArrayField(models.CharField(max_length=256))
     link = models.URLField()
-    password_hash = models.TextField()
+    password = models.TextField()
 
     def __str__(self):
         return self.name
