@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseForbidden
 from django.contrib.auth.models import User
 
@@ -12,7 +12,7 @@ def update_collection(request, pk):
     collection = get_object_or_404(Collection, pk=pk)
 
     if request.method == 'POST':
-        form = UpdateCollectionForm(request.POST)
+        form = UpdateCollectionForm(request.POST, request.FILES)
         if form.is_valid():
             return redirect('../penis')
     else:
