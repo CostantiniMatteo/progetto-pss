@@ -22,8 +22,7 @@ def create_collection(request):
             collection.link = '/labelling/%d' % collection.pk
             collection.save()
 
-            # TODO: Redirect a update-collection
-            return redirect('../detail/{}'.format(collection.pk))
+            return redirect('../update-collection/{}'.format(collection.pk))
     else:
         form = CollectionForm()
 

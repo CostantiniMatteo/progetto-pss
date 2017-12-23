@@ -34,6 +34,6 @@ urlpatterns = [
     path('update-collection/<int:pk>', update_collection, name='update-collection'),
     path('download-results/<int:pk>', download_results, name='download-results'),
     path('detail/<int:pk>', CollectionDetailView.as_view(), name='detail'),
+    path('labelling/<int:pk>', lambda r: HttpResponseRedirect('ancoranonloabbiamofattononrompereilcazzo/'), name='labelling'),
     path('item/<int:pk>', item, name='item'),
-    path('select2/', include('django_select2.urls')),
 ]

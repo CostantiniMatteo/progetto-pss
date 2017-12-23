@@ -14,6 +14,9 @@ def update_collection(request, pk):
     if request.method == 'POST':
         form = UpdateCollectionForm(request.POST, request.FILES)
         if form.is_valid():
+            # Unzip file
+            # Check all images
+            # Save every image
             return redirect('../penis')
     else:
         if collection.user != request.user:
