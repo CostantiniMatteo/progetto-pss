@@ -27,6 +27,7 @@ def update_collection(request, pk):
 
             for name in zip_file.namelist():
                 data = zip_file.read(name)
+                # TODO: Are both necessary?
                 try:
                     from PIL import Image
                     image = Image.open(BytesIO(data))
@@ -35,12 +36,12 @@ def update_collection(request, pk):
                     image.verify()
                 except:
                     raise HttpResponseServerError()
+
                 name = os.path.split(name)[1]
                 path = os.path.join(settings.MEDIA_ROOT,
                                     name)
                 saved_path = default_storage.save(path, ContentFile(data))
 
-                # TODO: Init labels field, possibly defining a function
                 item = Item(name=name,
                             collection=collection,
                             label='',
@@ -49,22 +50,12 @@ def update_collection(request, pk):
                             image=saved_path)
                 item.save()
 
-
-            # embed()
-            # Using File
-            # f = open('/path/to/file')
-            # self.license_file.save(new_name, File(f))
-            # Using ContentFile
-            # self.license_file.save(new_name, ContentFile('A string with the file content'))
-
-            # Unzip file
-            # Check all images
-            # Save every image
             return redirect('../detail/%d' % collection.pk)
-    else:
-        if collection.user != request.user:
+
+        elif collection.user != request.user:
             raise HttpResponseForbidden()
 
+    else:
         form = UpdateCollectionForm()
 
     return render(request,
