@@ -1,11 +1,14 @@
+import datetime, os
 from zipfile import ZipFile
-import datetime
+from io import BytesIO
 from IPython import embed
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseForbidden, HttpResponseServerError
 from django.contrib.auth.models import User
 from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+from django.conf import settings
 
 from ..models import Collection, Item
 from ..forms import UpdateCollectionForm
@@ -34,18 +37,17 @@ def update_collection(request, pk):
                     raise HttpResponseServerError()
                 name = os.path.split(name)[1]
                 path = os.path.join(settings.MEDIA_ROOT,
-                                    native(str(name, errors="ignore")))
+                                    name)
                 saved_path = default_storage.save(path, ContentFile(data))
 
                 # TODO: Init labels field, possibly defining a function
-                # file = open('saved_path')
-                # item = Item(name=name,
-                #             collection=collection,
-                #             label='',
-                #             labels={k: 0 for k in collection.labels},
-                #             last_fetched=datetime.datetime.now(),
-                #             image=None)
-                # item.image.save()
+                item = Item(name=name,
+                            collection=collection,
+                            label='',
+                            labels={k: 0 for k in collection.labels},
+                            last_fetched=None,
+                            image=saved_path)
+                item.save()
 
 
             # embed()
@@ -58,7 +60,7 @@ def update_collection(request, pk):
             # Unzip file
             # Check all images
             # Save every image
-            return redirect('../penis')
+            return redirect('../detail/%d' % collection.pk)
     else:
         if collection.user != request.user:
             raise HttpResponseForbidden()
