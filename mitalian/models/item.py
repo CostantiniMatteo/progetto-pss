@@ -9,7 +9,7 @@ class Item(models.Model):
     label = models.CharField(max_length=256)
     # { 'label1': n_votes, 'label2': n_votes, ... }
     labels = JSONField()
-    last_feched = models.DateTimeField()
+    last_feched = models.DateTimeField(null=True, blank=True)
     image = models.FilePathField(max_length=256)
 
     def __str__(self):
