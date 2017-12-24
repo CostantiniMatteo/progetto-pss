@@ -25,7 +25,7 @@ SECRET_KEY = 'fpbu_!5!=!1wzmd*)lk=53^xfjl%x*(v7a!3#jfob@j!xa76q9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition

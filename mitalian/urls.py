@@ -27,7 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', lambda r: HttpResponseRedirect('home/'), name='root'),
     path('home/', index, name='index'),
-    path('login/', auth_views.login, {'template_name': 'login.html'}, name='login'),
+    path('login/', auth_views.login, {'template_name': 'login.html', 'redirect_authenticated_user': True}, name='login'),
     path('logout/', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
     path('signup/', signup, name='signup'),
     path('collections/', CollectionsView.as_view(), name='collections'),

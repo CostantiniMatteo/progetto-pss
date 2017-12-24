@@ -16,6 +16,7 @@ def create_collection(request):
             collection = form.save(commit=False)
 
             if len(collection.labels) > len(set(collection.labels)):
+                # TODO: Terrible. Find another way.
                 raise HttpResponseBadRequest("Labels contain duplicates")
 
             collection.user = request.user
