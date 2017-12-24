@@ -10,7 +10,7 @@ class Item(models.Model):
     # { 'label1': n_votes, 'label2': n_votes, ... }
     labels = JSONField()
     last_feched = models.DateTimeField()
-    image = models.ImageField(max_length=256)
+    image = models.FilePathField(max_length=256)
 
     def __str__(self):
         return self.name
