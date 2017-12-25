@@ -21,7 +21,7 @@ from django.http import HttpResponseRedirect
 
 from .views import index, signup, CollectionsView, CollectionDetailView
 from .views import create_collection, update_collection, item, download_results
-from .views import truncate_collection
+from .views import truncate_collection, begin_labelling
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,7 +35,7 @@ urlpatterns = [
     path('update-collection/<int:pk>', update_collection, name='update-collection'),
     path('download-results/<int:pk>', download_results, name='download-results'),
     path('detail/<int:pk>', CollectionDetailView.as_view(), name='detail'),
-    path('labelling/<int:pk>', lambda r: HttpResponseRedirect('ancoranonloabbiamofattononrompereilcazzo/'), name='labelling'),
+    path('begin-labelling/<int:pk>', begin_labelling, name='begin-labelling'),
     path('item/<int:pk>', item, name='item'),
     path('truncate-collection/<int:pk>', truncate_collection, name='truncate-collection')
 ]

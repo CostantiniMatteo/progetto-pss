@@ -7,3 +7,4 @@ from .signup import *
 from .update_collection import *
 from .download_results import *
 from .truncate_collection import *
+from .begin_labelling import *
