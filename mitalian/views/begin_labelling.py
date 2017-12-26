@@ -21,6 +21,7 @@ def begin_labelling(request, pk):
 
             # Redirect to the first one
             if len(fetched_items) > 0:
+                # TODO: Add a cookie
                 return redirect('../item/{}'.format(fetched_items[0].pk))
             else:
                 # TODO: Maybe a page saying that the collection is empty

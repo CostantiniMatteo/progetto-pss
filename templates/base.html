@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  {% load staticfiles %} 
+  {% load staticfiles %}
   <meta charset="utf-8">
   <title>{% block title %}Django Simple Login{% endblock %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,14 +12,14 @@
   <link rel="stylesheet" href="{% static 'css/circle.css' %}">
 </head>
 <body>
-  <div class="header">  
-    <header>      
+  <div class="header">
+    <header>
       <h1 class="headerTitle">Mechanical Italian</h1>
       {% if user.is_authenticated %}
         Hi {{ user.username }}!
         <a href="{% url 'logout' %}">Logout</a>
       {% else %}
-        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'login' %}?next={% firstof request.path '/home' %}">Login</a>
         <a href="{% url 'signup' %}">Sign Up</a>
       {% endif %}
     </header>
