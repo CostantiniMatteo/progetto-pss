@@ -1,9 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseBadRequest
-from django.contrib.auth.hashers import make_password
+from django.http import HttpResponseBadRequest
 
-from ..models import Collection
 from ..forms import CollectionForm
 
 

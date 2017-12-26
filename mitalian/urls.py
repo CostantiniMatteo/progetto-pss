@@ -23,6 +23,7 @@ from .views import index, signup, CollectionsView, CollectionDetailView
 from .views import create_collection, update_collection, item, download_results
 from .views import truncate_collection, begin_labelling
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', lambda r: HttpResponseRedirect('home/'), name='root'),

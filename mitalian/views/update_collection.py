@@ -1,11 +1,9 @@
-import datetime, os
+import os
 from zipfile import ZipFile
 from io import BytesIO
-from IPython import embed
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseForbidden, HttpResponseServerError
-from django.contrib.auth.models import User
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.conf import settings

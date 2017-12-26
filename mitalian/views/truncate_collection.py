@@ -1,5 +1,4 @@
-from django.http import HttpResponse, HttpResponseForbidden
-from django.contrib.auth.models import User
+from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404, redirect
 
 from ..models import Collection, Item

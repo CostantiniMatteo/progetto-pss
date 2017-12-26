@@ -1,10 +1,9 @@
 import csv
 
 from django.http import HttpResponse, HttpResponseForbidden
-from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 
-from ..models import Collection, Item
+from ..models import Collection
 
 
 def download_results(request, pk):
