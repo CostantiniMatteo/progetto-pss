@@ -19,6 +19,8 @@ def create_collection(request):
 
             collection.user = request.user
             collection.progress = 0
+            collection.total_images = 0
+            collection.labelled_images = 0
             password = User.objects.make_random_password(length=10)
             collection.password = password
 

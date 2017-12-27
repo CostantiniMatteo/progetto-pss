@@ -48,6 +48,9 @@ def update_collection(request, pk):
                             image=saved_path)
                 item.save()
 
+            # Update images count
+            collection.total_images += len(zip_file.infolist())
+            collection.save()
             return redirect('../detail/%d' % collection.pk)
 
         elif collection.user != request.user:

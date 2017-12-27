@@ -9,6 +9,8 @@ class Collection(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     # labeled images / total images
     progress = models.IntegerField()
+    total_images = models.IntegerField()
+    labelled_images = models.IntegerField()
     # Allowed labels for collection's images
     labels = ArrayField(models.CharField(max_length=256))
     # Where you can label images of this collection
