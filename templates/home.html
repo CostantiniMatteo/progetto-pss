@@ -3,16 +3,6 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-	<script type="text/javascript">
-	window.onload=function(){
-		var list = document.getElementsByTagName("header")[0];
-		console.log(list);
-
-		list.children[1].remove();
-		list.children[1].remove();
-		list.children[1].remove();
-	}
-	</script>
     {% if user.is_authenticated %}
         <br><br>
         <div style="margin:auto; text-align: center">
@@ -24,21 +14,31 @@
         	</a>
     	</div>
     {% else %}
-    <style>
-		main{
-			height: 50%; 
-			text-align: center; 
-			display: flex; 
-			justify-content: center;
-		}
-	</style>
-    <div class="authentication">
-    	<a href="{% url 'login' %}?next={% firstof request.path '/home' %}">
-    		<button type="button" class="btn btn-success coll">Login</button>
-    	</a>
-    	<a href="{% url 'signup' %}">
-    		<button type="button" class="btn btn-success coll">Sign Up</button>
-    	</a>
-    </div>
+    	<script type="text/javascript">
+			window.onload=function(){
+				var list = document.getElementsByTagName("header")[0];
+				console.log(list.children);
+
+				list.children[1].remove();
+				list.children[1].remove();
+				list.children[1].remove();
+			}
+		</script>
+	    <style>
+			main{
+				height: 50%; 
+				text-align: center; 
+				display: flex; 
+				justify-content: center;
+			}
+		</style>
+	    <div class="authentication">
+	    	<a href="{% url 'login' %}?next={% firstof request.path '/home' %}">
+	    		<button type="button" class="btn btn-success coll">Login</button>
+	    	</a>
+	    	<a href="{% url 'signup' %}">
+	    		<button type="button" class="btn btn-success coll">Sign Up</button>
+	    	</a>
+	    </div>
     {% endif %}
 {% endblock %}

@@ -11,7 +11,7 @@ html,body {
 }
 
 main, .header{
-	width: 60%; 
+	width: 50%; 
 	margin: auto;
 }
 
@@ -85,23 +85,23 @@ ul {
 	float: none;
 }
 
+#main-panel{
+	width: 80%;
+	margin: auto;
+}
 
-.well.well-lg {
-	display: table;
+.well.well-lg {	
 	width: 100%;
 }
 
-.Coll-info {
-	display:table-cell;
-	width: 80px;
+#Coll-info {
 	overflow: auto;
 	vertical-align: middle;
 }
 
-.nameColl {
-	display: table-cell;
+#nameColl {
 	vertical-align: middle;
-	font-size: 150%;
+	font-size: 30px;
 }
 
 #row1, #row2{
@@ -118,7 +118,7 @@ ul {
 
 
 #container, #item-name, #labels, #tags{
-	display: table-cell;
+	
 	vertical-align: middle;
 }
 
@@ -138,10 +138,12 @@ ul {
 
 #labels{
 	font-size: 200%;
-	width: 180px;
+
 }
 
 #tags {
-	width:350px;
+	
 	pointer-events:none;
 }
+
+	

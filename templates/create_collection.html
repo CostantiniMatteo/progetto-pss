@@ -19,6 +19,9 @@
 	}
 	});
     
+    app.config(function(tagsInputConfigProvider) {
+				    tagsInputConfigProvider.setDefaults('tagsInput', { minLength: 1 });
+	});
 </script>
 <script type="text/javascript">
 	//Funzione richiamata quando viene schiacciato il tasto per creare la collection
