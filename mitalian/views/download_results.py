@@ -1,6 +1,7 @@
 import csv
 
-from django.http import HttpResponse, HttpResponseForbidden
+from django.http import HttpResponse
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 
 from ..models import Collection
@@ -13,7 +14,7 @@ def download_results(request, pk):
 
     collection = get_object_or_404(Collection, pk=pk)
     if request.user != collection.user:
-        raise HttpResponseForbidden()
+        raise PermissionDenied()
 
     images = collection.item_set.all()
 

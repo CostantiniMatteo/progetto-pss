@@ -3,7 +3,8 @@ from zipfile import ZipFile
 from io import BytesIO
 
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponseForbidden, HttpResponseServerError
+from django.http import HttpResponseServerError
+from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.conf import settings
@@ -54,7 +55,7 @@ def update_collection(request, pk):
             return redirect('../detail/%d' % collection.pk)
 
         elif collection.user != request.user:
-            raise HttpResponseForbidden()
+            raise PermissionDenied()
 
     else:
         form = UpdateCollectionForm()

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseBadRequest
 
 from ..forms import CollectionForm
-
+from IPython import embed
 
 # TODO: Cambiare il modo in cui vengono inserite le label
 # TODO: Controllare che label non siano duplicate
@@ -25,7 +25,8 @@ def create_collection(request):
             collection.password = password
 
             collection.save()
-            collection.link = '/labelling/%d' % collection.pk
+            relative_url = '/labelling/%d' % collection.pk
+            collection.link = request.build_absolute_uri(relative_url)
             collection.save()
 
             return redirect('../update-collection/{}'.format(collection.pk))

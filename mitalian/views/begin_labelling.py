@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseForbidden
+from django.core.exceptions import PermissionDenied
+
 
 from ..forms import BeginLabellingForm
 from ..models import Collection
@@ -13,7 +14,7 @@ def begin_labelling(request, pk):
             # Check password
             collection = get_object_or_404(Collection, pk=pk)
             if collection.password != form.cleaned_data.get('password'):
-                raise HttpResponseForbidden()
+                raise PermissionDenied()
 
             # Load images
             fetched_items = collection.item_set.order_by('-last_fetched')[:50]
