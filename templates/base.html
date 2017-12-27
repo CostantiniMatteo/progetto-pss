@@ -5,11 +5,24 @@
   <meta charset="utf-8">
   <title>{% block title %}Django Simple Login{% endblock %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="{% static 'css/blog.css' %}">
   <link rel="stylesheet" href="{% static 'css/circle.css' %}">
+  <!--<link type="text/css" href="{% static 'css/twilight.css' %}" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/projects.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/taggle.css' %}">-->
+  <script>document.write('<base href="' + document.location + '" />');</script>
+  <link rel="stylesheet" href="{% static 'css/ng-tags-input.min/ng-tags-input.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/ng-tags-input.min/ng-tags-input.bootstrap.min.css' %}" />
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+  <script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
+  <script src="{% static 'css/app.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/progressbar.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/circular-bar.js' %}"></script>
+
 </head>
 <body>
   <div class="header">
@@ -17,17 +30,19 @@
       <h1 class="headerTitle">Mechanical Italian</h1>
       {% if user.is_authenticated %}
         Hi {{ user.username }}!
-        <a href="{% url 'logout' %}">Logout</a>
+        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'logout' %}">Logout</a>       
       {% else %}
+        <a href="{% url 'index' %}">Home</a>
         <a href="{% url 'login' %}?next={% firstof request.path '/home' %}">Login</a>
-        <a href="{% url 'signup' %}">Sign Up</a>
+        <a href="{% url 'signup' %}">Sign Up</a>        
       {% endif %}
     </header>
   <br>
+  </div>
   <main>
     {% block content %}
     {% endblock %}
   </main>
-  </div>
 </body>
 </html>

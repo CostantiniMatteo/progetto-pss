@@ -6,11 +6,48 @@
 {% block content %}
 
 {% if collection.item_set %}
-    <ul>
+		<script type="text/javascript">
+		window.onload=function(){
+			document.getElementsByTagName("html")[0].setAttribute("ng-app","plunker");
+			document.getElementsByTagName("body")[0].setAttribute("ng-controller", "MainCtrl");
+
+		    circularBar({{ collection.progress }});
+			var labels = [
+				{% for obj in collection.labels %}
+					{'text' : "{{ obj }}" }, 
+				{% endfor %}
+				];
+
+    			console.log(labels);
+    			fillTags(labels);
+		}
+		</script>
+		<script>
+			//$( document ).ready(function() {
+			function fillTags(tags){
+				var app = angular.module('plunker', ['ngTagsInput']);
+				app.controller('MainCtrl', function($scope, $http) {
+				  $scope.tags =tags;
+				});
+			};
+		</script>
+    	<div class="well well-lg" >
+    		<div id="row1">
+    			<div id="item-name"><p>{{ collection.name }}</p></div>
+				<div id="container"></div>
+			</div>
+			<br><br>
+			<div id="row2">
+				<div id="labels"><p>Label:</p></div>
+				<div id="tags">
+				<tags-input ng-model="tags" placeholder=" " on-tag-added="ActionFreeText($tag)" use-strings="true"></tags-input>
+				</div>
+		
+			</div>
+    	</div>
     {% for item in collection.item_set.all %}
         <li><a href="{% url 'detail' item.id %}">{{ item.name }}</a></li>
     {% endfor %}
-    </ul>
 {% else %}
     <p>The collection is empty.</p>
 {% endif %}
