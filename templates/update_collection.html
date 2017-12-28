@@ -2,10 +2,10 @@
 
 {% block title %}Login{% endblock %}
 {% block content %}
-  <h2>Update collection '{{ collection.name }}'</h2>
-  <form class="form-horizontal" method="post" enctype="multipart/form-data">
+<h2>Update collection '{{ collection.name }}'</h2>
+<form class="form-horizontal" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" name="_submit" class="btn btn-success">Update</button>
-  </form>
+</form>
 {% endblock %}

@@ -2,58 +2,55 @@
 
 {% block content %}
 <script type="text/javascript">
-	//<![CDATA[
-	window.onload=function(){
-		document.getElementsByTagName("html")[0].setAttribute("ng-app","plunker");
-		document.getElementsByTagName("body")[0].setAttribute("ng-controller", "MainCtrl");
-	}//]]> 
+    window.onload=function(){
+        document.getElementsByTagName("html")[0].setAttribute("ng-app","plunker");
+        document.getElementsByTagName("body")[0].setAttribute("ng-controller", "MainCtrl");
+    }
 </script>
 <script>
-	//Questo script aggiunge i tag nel tag input del form
+    //Questo script aggiunge i tag nel tag input del form
     app.controller('MainCtrl', function($scope, $http) {
-		$scope.ActionFreeText = function(tag) {
+        $scope.ActionFreeText = function(tag) {
+            var input = document.getElementById('id_labels');
+            input.value = input.value + tag.text + ",";
+        }
+    });
 
-		var input = document.getElementById('id_labels');
-		input.value = input.value + tag.text + ",";
-      	//console.log(tag.text);
-	}
-	});
-    
     app.config(function(tagsInputConfigProvider) {
-				    tagsInputConfigProvider.setDefaults('tagsInput', { minLength: 1 });
-	});
+        tagsInputConfigProvider.setDefaults('tagsInput', { minLength: 1 });
+    });
 </script>
 <script type="text/javascript">
-	//Funzione richiamata quando viene schiacciato il tasto per creare la collection
-	function submitFunc() {
-		document.getElementsByTagName("html")[0].removeAttribute("ng-app");
-		document.getElementsByTagName("html")[0].removeAttribute("class");
-		var input = document.getElementById('id_labels');
-		input.value = input.value.substr(0, input.value.length - 1);
-		console.log(input);
-		$("#formColl").submit(); 
-	}
+    //Funzione richiamata quando viene schiacciato il tasto per creare la collection
+    function submitFunc() {
+        document.getElementsByTagName("html")[0].removeAttribute("ng-app");
+        document.getElementsByTagName("html")[0].removeAttribute("class");
+        var input = document.getElementById('id_labels');
+        input.value = input.value.substr(0, input.value.length - 1);
+        console.log(input);
+        $("#formColl").submit();
+    }
 </script>
 <div>
   <h2>New Collection</h2>
   <form method="post" id="formColl">
     {% csrf_token %}
     <div class="fieldWrapper">
-    	{{ form.name.errors }}
-    	<label for="{{ form.name.id_for_label }}">Name</label>
-    	{{ form.name }}
-	</div>
-	<div class="fieldWrapper">
-    	{{ form.labels.errors }}
-    	<label for="{{ form.name.id_for_label }}">Labels</label>
-    	<div hidden>{{ form.labels }}</div>
-    	<!--<div id="example1" class="input textarea"></div>   	
-		<p id="log"></p>-->
-		<tags-input ng-model="tags" placeholder="Add a label" on-tag-added="ActionFreeText($tag)" use-strings="true"></tags-input>
-		
-	</div>
-	<br>
-    <button onclick="submitFunc()" type="submit" name="_submit" class="btn btn-success">Create</button>
-  </form>
+        {{ form.name.errors }}
+        <label for="{{ form.name.id_for_label }}">Name</label>
+        {{ form.name }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.labels.errors }}
+        <label for="{{ form.name.id_for_label }}">Labels</label>
+        <div hidden>{{ form.labels }}</div>
+        <!--<div id="example1" class="input textarea"></div>
+            <p id="log"></p>-->
+            <tags-input ng-model="tags" placeholder="Add a label" on-tag-added="ActionFreeText($tag)" use-strings="true"></tags-input>
+
+        </div>
+        <br>
+        <button onclick="submitFunc()" type="submit" name="_submit" class="btn btn-success">Create</button>
+    </form>
 </div>
 {% endblock %}

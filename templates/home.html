@@ -3,33 +3,33 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-    {% if user.is_authenticated %}
-        <br><br>
-        <div style="margin:auto; text-align: center">
-        	<a href="{% url 'collections' %}">
-        		<button type="button" class="btn btn-success coll">My Collections</button>
-        	</a>
-        	<a href="{% url 'create-collection' %}">
-        		<button type="button" class="btn btn-success coll">Create Collection</button>
-        	</a>
-    	</div>
-    {% else %}
-    {% block login_signup %}{% endblock %}
-	    <style>
-			main{
-				height: 50%;
-				text-align: center;
-				display: flex;
-				justify-content: center;
-			}
-		</style>
-	    <div class="authentication">
-	    	<a href="{% url 'login' %}?next={% firstof request.path '/home' %}">
-	    		<button type="button" class="btn btn-success coll">Login</button>
-	    	</a>
-	    	<a href="{% url 'signup' %}">
-	    		<button type="button" class="btn btn-success coll">Sign Up</button>
-	    	</a>
-	    </div>
-    {% endif %}
+{% if user.is_authenticated %}
+<br><br>
+<div style="margin:auto; text-align: center">
+    <a href="{% url 'collections' %}">
+        <button type="button" class="btn btn-success coll">My Collections</button>
+    </a>
+    <a href="{% url 'create-collection' %}">
+        <button type="button" class="btn btn-success coll">Create Collection</button>
+    </a>
+</div>
+{% else %}
+{% block login_signup %}{% endblock %}
+<style>
+main{
+    height: 50%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+</style>
+<div class="authentication">
+    <a href="{% url 'login' %}?next={% firstof request.path '/home' %}">
+        <button type="button" class="btn btn-success coll">Login</button>
+    </a>
+    <a href="{% url 'signup' %}">
+        <button type="button" class="btn btn-success coll">Sign Up</button>
+    </a>
+</div>
+{% endif %}
 {% endblock %}
