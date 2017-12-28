@@ -12,6 +12,13 @@ function circularBar(value) {
     text: {
       autoStyleContainer: false
     },
+    svgStyle: {
+        display: 'block',
+
+        // Important: make sure that your container has same
+        // aspect ratio as the SVG canvas. See SVG canvas sizes above.
+        width: '100%'
+    },
    from: {color: '#FFEA82', width: 4},
     to: {color: '#ED6A5A', width: 6},
     // Set default step function for all animate calls
@@ -22,7 +29,7 @@ function circularBar(value) {
       //var value = Math.round(circle.value() * 100);
 
       circle.setText(value + '%');
-      
+
 
     }
   });

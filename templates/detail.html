@@ -37,8 +37,17 @@
 				{% endfor %}
 				];
 
-    			console.log(labels);
-    			fillTags(labels);
+			console.log(labels);
+			fillTags(labels);
+
+
+
+            // var para = document.createElement("p");
+            // var node = document.createTextNode("{{ collection.labelled_images}}/{{ collection.total_images }}");
+            // para.appendChild(node);
+
+            // var element = document.getElementsByTagName("svg")[0];
+            // element.appendChild(para);
 		}
 		</script>
 		<script>
@@ -56,26 +65,28 @@
     	<div class="well well-lg" >
     		<div class="container-fluid">
 	    		<div class="row">
-	    			<div id="item-name" class="col-sm-9"><p>{{ collection.name }}</p>
+	    			<div id="item-name" class="col-lg-9"><p>{{ collection.name }}</p>
                         <br>
                         <a href="{% url 'update-collection' collection.id %}">
                             <button type="submit" class="btn btn-success">Update</button>
                         </a>
                     </div>
-				<div class="col-sm-2">
+				<div class="col-lg-3" style="text-align: center; margin: auto;">
                     <div id="container"></div>
+                    <br>
+                    <p>{{ collection.labelled_images}}/{{ collection.total_images }}</p>
                 </div>
 				</div>
 				<br><br>
 				<div class="row">
-					<div id="label" class="col-sm-4"><p>Label:</p></div>
-					<div id="tags" class="col-sm-8">
+					<div id="label" class="col-lg-4"><p>Label:</p></div>
+					<div id="tags" class="col-lg-8">
 					<tags-input ng-model="tags" use-strings="true" ></tags-input>
 					</div>
 				</div>
                 <br><br>
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-lg-12">
                       <label for="comment">Description:</label>
                       <textarea class="form-control" rows="5" id="comment" disabled>
                           {{ collection.description }}
@@ -86,7 +97,7 @@
 
     	</div>
     {% for item in collection.item_set.all %}
-        <li><a href="{% url 'detail' item.id %}">{{ item.name }}</a></li>
+        <!--<li><a href="{% url 'detail' item.id %}">{{ item.name }}</a></li>-->
     {% endfor %}
 {% else %}
     <p>The collection is empty.</p>

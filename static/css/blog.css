@@ -110,10 +110,9 @@ ul {
 }
 
 #container {
-	margin: 20px;
+	margin: auto;
 	width: 100px;
 	height: 100px;
-	right: 10px;
 	position: relative;
 	overflow: auto;
 	vertical-align: middle;
