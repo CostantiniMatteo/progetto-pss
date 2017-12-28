@@ -5,6 +5,7 @@ from django.core.exceptions import PermissionDenied
 
 from ..forms import BeginLabellingForm
 from ..models import Collection
+from . import _get_next_item_url
 
 
 # TOOD: Check if this works even if the user is not logged in
@@ -17,24 +18,7 @@ def begin_labelling(request, pk):
             if collection.password != form.cleaned_data.get('password'):
                 raise PermissionDenied()
 
-            # Load images
-            fetched_items = list(collection.item_set.order_by('-votes_number')[:200])
-            random.shuffle(fetched_items)
-            fetched_items = fetched_items[:50]
-            request.session['fetched_items'] = fetched_items
-
-            # Redirect to the first one
-            if len(fetched_items) > 0:
-                try:
-                    request.session['labelling'].append(collection.pk)
-                except:
-                    request.session['labelling'] = [collection.pk]
-
-                return redirect('../item/{}'.format(fetched_items[0].pk))
-            else:
-                # TODO: Maybe a page saying that the collection is empty
-                # See Django Forms error messages
-                return redirect('../home')
+            return redirect(_get_next_item_url(request))
     else:
         form = BeginLabellingForm()
 

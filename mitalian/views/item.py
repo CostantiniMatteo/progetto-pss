@@ -31,9 +31,35 @@ def item(request, pk):
     else:
         form = { 'image': item.image, 'labels': item.collection.labels }
 
-
     return render(request, 'item.html', {'form': form})
 
 
 def _get_next_item_url(request):
-    return 'https://localhost:8000/item/2'
+    # Load images
+    try:
+        if request.session['fetched_items']:
+            next_item_url = request.session['fetched_items'].pop()
+            return next_item_url
+        else:
+            _fetch_items(request)
+    except KeyError:
+        _fetched_items(request)
+
+    if request.session['fetched_items']:
+        try:
+            request.session['labelling'].append(collection.pk)
+        except:
+            request.session['labelling'] = [collection.pk]
+
+        return '../item/{}'.format(fetched_items[0].pk)
+    else:
+        # TODO: Maybe a page saying that the collection is empty
+        # See Django Forms error messages
+        return '../home'
+
+
+def _fetch_items(request):
+    fetched_items = list(collection.item_set.order_by('-votes_number')[:200])
+    random.shuffle(fetched_items)
+    fetched_items = fetched_items[:50]
+    request.session['fetched_items'] = fetched_items
