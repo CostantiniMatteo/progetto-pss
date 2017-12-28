@@ -26,15 +26,14 @@ def update_collection(request, pk):
 
             for name in zip_file.namelist():
                 data = zip_file.read(name)
-                # TODO: Are both necessary?
+
                 try:
                     from PIL import Image
                     image = Image.open(BytesIO(data))
                     image.load()
-                    image = Image.open(BytesIO(data))
-                    image.verify()
                 except:
-                    raise HttpResponseServerError()
+                    # TODO: Redirect to an error message
+                    raise Exception()
 
                 name = os.path.split(name)[1]
                 path = os.path.join(settings.MEDIA_ROOT,

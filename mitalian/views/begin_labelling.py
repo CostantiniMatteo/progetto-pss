@@ -17,16 +17,26 @@ def begin_labelling(request, pk):
                 raise PermissionDenied()
 
             # Load images
+            # TODO: Fetch the images in a different way
+            # Instead of using the last_fetched attribute, it will fetch the
+            # images with the smaller number of total votes and then randomply
+            # choose a subset of these
             fetched_items = collection.item_set.order_by('-last_fetched')[:50]
-            request.session['fetched_items'] = fetched_items
+            request.session['fetched_items'] = list(fetched_items)
 
             # Redirect to the first one
             if len(fetched_items) > 0:
-                # TODO: Add a cookie
+                try:
+                    request.session['labelling'].append(collection.name)
+                except:
+                    request.session['labelling'] = [collection.name]
+
                 return redirect('../item/{}'.format(fetched_items[0].pk))
             else:
                 # TODO: Maybe a page saying that the collection is empty
+                # See Django Forms error messages
                 return redirect('../home')
     else:
         form = BeginLabellingForm()
+
     return render(request, 'begin_labelling.html', {'form': form})

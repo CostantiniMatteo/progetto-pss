@@ -4,7 +4,6 @@ from django.http import  Http404
 from django.core.exceptions import PermissionDenied
 
 from ..models import Collection, Item
-from IPython import embed
 
 
 class CollectionDetailView(generic.DetailView):

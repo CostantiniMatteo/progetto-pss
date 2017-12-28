@@ -3,10 +3,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseBadRequest
 
 from ..forms import CollectionForm
-from IPython import embed
 
-# TODO: Cambiare il modo in cui vengono inserite le label
-# TODO: Controllare che label non siano duplicate
 def create_collection(request):
     if request.method == 'POST':
         form = CollectionForm(request.POST)
