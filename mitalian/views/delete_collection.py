@@ -1,14 +1,15 @@
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, redirect
 
-from ..models import Collection, Item
+from ..models import Collection
 
 
-def truncate_collection(request, pk):
+def delete_collection(request, pk):
     collection = get_object_or_404(Collection, pk=pk)
+
     if request.user != collection.user:
         raise PermissionDenied()
 
-    Item.objects.filter(collection=collection).delete()
+    collection.delete()
 
     return redirect('../collections')
