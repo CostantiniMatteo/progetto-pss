@@ -14,21 +14,12 @@
         	</a>
     	</div>
     {% else %}
-    	<script type="text/javascript">
-			window.onload=function(){
-				var list = document.getElementsByTagName("header")[0];
-				console.log(list.children);
-
-				list.children[1].remove();
-				list.children[1].remove();
-				list.children[1].remove();
-			}
-		</script>
+    {% block login_signup %}{% endblock %}
 	    <style>
 			main{
-				height: 50%; 
-				text-align: center; 
-				display: flex; 
+				height: 50%;
+				text-align: center;
+				display: flex;
 				justify-content: center;
 			}
 		</style>
