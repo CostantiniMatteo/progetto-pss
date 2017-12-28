@@ -44,7 +44,7 @@ def update_collection(request, pk):
                             collection=collection,
                             label='',
                             labels={k: 0 for k in collection.labels},
-                            last_fetched=None,
+                            votes_number=0,
                             image=saved_path)
                 item.save()
 

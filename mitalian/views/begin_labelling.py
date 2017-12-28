@@ -1,6 +1,7 @@
+import random
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.exceptions import PermissionDenied
-
 
 from ..forms import BeginLabellingForm
 from ..models import Collection
@@ -17,11 +18,9 @@ def begin_labelling(request, pk):
                 raise PermissionDenied()
 
             # Load images
-            # TODO: Fetch the images in a different way
-            # Instead of using the last_fetched attribute, it will fetch the
-            # images with the smaller number of total votes and then randomply
-            # choose a subset of these
-            fetched_items = collection.item_set.order_by('-last_fetched')[:50]
+            fetched_items = collection.item_set.order_by('-votes_number')[:200]
+            random.shuffle(fetched_items)
+            fetched_items = fetched_items[:50]
             request.session['fetched_items'] = list(fetched_items)
 
             # Redirect to the first one

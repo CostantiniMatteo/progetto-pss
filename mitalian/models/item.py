@@ -14,7 +14,7 @@ class Item(models.Model):
     labels = JSONField()
     # This is used to choose what images to show, giving priority to lower
     # Datetimes.
-    last_fetched = models.DateTimeField(null=True, blank=True)
+    votes_number = models.IntegerField()
     image = models.FilePathField(max_length=256)
 
     def __str__(self):
