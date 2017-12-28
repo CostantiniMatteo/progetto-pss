@@ -15,7 +15,7 @@ def create_collection(request):
                 raise HttpResponseBadRequest("Labels contain duplicates")
 
             collection.user = request.user
-            collection.progress = 0
+            collection.progress = 50
             collection.total_images = 0
             collection.labelled_images = 0
             password = User.objects.make_random_password(length=10)

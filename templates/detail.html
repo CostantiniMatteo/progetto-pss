@@ -33,7 +33,7 @@
 		    circularBar({{ collection.progress }});
 			var labels = [
 				{% for obj in collection.labels %}
-					{'text' : "{{ obj }}" }, 
+					{'text' : "{{ obj }}" },
 				{% endfor %}
 				];
 
@@ -56,17 +56,34 @@
     	<div class="well well-lg" >
     		<div class="container-fluid">
 	    		<div class="row">
-	    			<div id="item-name" class="col-sm-9"><p>{{ collection.name }}</p></div>
-					<div id="container" class="col-sm-2"></div>
+	    			<div id="item-name" class="col-sm-9"><p>{{ collection.name }}</p>
+                        <br>
+                        <a href="{% url 'update-collection' collection.id %}">
+                            <button type="submit" class="btn btn-success">Update</button>
+                        </a>
+                    </div>
+				<div class="col-sm-2">
+                    <div id="container"></div>
+                </div>
 				</div>
 				<br><br>
 				<div class="row">
-					<div id="labels" class="col-sm-4"><p>Label:</p></div>
+					<div id="label" class="col-sm-4"><p>Label:</p></div>
 					<div id="tags" class="col-sm-8">
 					<tags-input ng-model="tags" use-strings="true" ></tags-input>
 					</div>
 				</div>
+                <br><br>
+                <div class="row">
+                    <div class="col-sm-12">
+                      <label for="comment">Description:</label>
+                      <textarea class="form-control" rows="5" id="comment" disabled>
+                          {{ collection.description }}
+                      </textarea>
+                    </div>
+                </div>
 			</div>
+
     	</div>
     {% for item in collection.item_set.all %}
         <li><a href="{% url 'detail' item.id %}">{{ item.name }}</a></li>

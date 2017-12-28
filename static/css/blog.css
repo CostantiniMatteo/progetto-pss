@@ -11,7 +11,7 @@ html,body {
 }
 
 main, .header{
-	width: 50%; 
+	width: 50%;
 	margin: auto;
 }
 
@@ -23,9 +23,9 @@ header {
 	font-size: small;
 }
 
-label[for=id_username], 
-label[for=id_password], 
-label[for=id_password1], 
+label[for=id_username],
+label[for=id_password],
+label[for=id_password1],
 label[for=id_password2],
 label[for=id_name] {
 	font-size: medium;
@@ -52,7 +52,7 @@ label[for=id_name] {
 }
 
 
-input {	
+input {
     line-height: normal;
     background-color: transparent;
     border: none;
@@ -90,7 +90,7 @@ ul {
 	margin: auto;
 }
 
-.well.well-lg {	
+.well.well-lg {
 	width: 100%;
 }
 
@@ -101,24 +101,11 @@ ul {
 
 #nameColl {
 	vertical-align: middle;
-	font-size: 30px;
-}
-
-#row1, #row2{
-	
-}
-
-#row1 {
 
 }
-
-#row2{
-
-}
-
 
 #container, #item-name, #labels, #tags{
-	
+
 	vertical-align: middle;
 }
 
@@ -132,18 +119,37 @@ ul {
 	vertical-align: middle;
 }
 
-#item-name{
-	font-size: 300%;
-}
-
-#labels{
-	font-size: 200%;
-
-}
 
 #tags {
-	
 	pointer-events:none;
 }
 
-	
+
+@media all and (min-width: 960px) {
+    #item-name p{
+        font-size: 36px;
+    }
+
+    #nameColl a, #label p{
+        font-size: 25px;
+    }
+}
+
+
+
+@media all and (max-width: 959px) and (min-width: 600px) {
+    #item-name p, #label p{
+        font-size: 3vw;
+    }
+}
+
+
+@media all and (max-width: 599px) and (min-width: 50px) {
+    #item-name p, #label p, #nameColl a{
+        font-size: 3vw;
+    }
+}
+
+textarea {
+    resize: none;
+}
