@@ -8,8 +8,23 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-
-
+    <img id="img" src="/media/{{ form.image }}" class="img-thumbnail">
+    <div class="container">
+        <form method="post" id="form1">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="sel1">Select list (select one):</label>
+                <select multiple class="form-control" id="sel2">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                </select>
+            </div>
+        </form>
+        <button action="." type="submit" form="form1" value="Submit">Submit</button>
+    </div>
 {% else %}
 <p>You are not logged in. Please <a href="{%url 'login' %}">log in</a>
 {% endif %}

@@ -14,6 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
+from django.conf.urls.static import static
+from django.conf import settings
 from django.conf.urls import include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
@@ -40,4 +42,4 @@ urlpatterns = [
     path('item/<int:pk>', item, name='item'),
     path('truncate-collection/<int:pk>', truncate_collection, name='truncate-collection'),
     path('delete-collection/<int:pk>', delete_collection, name='delete-collection'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

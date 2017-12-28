@@ -27,8 +27,6 @@
 		</style>
 		<script type="text/javascript">
 		window.onload=function(){
-			document.getElementsByTagName("html")[0].setAttribute("ng-app","plunker");
-			document.getElementsByTagName("body")[0].setAttribute("ng-controller", "MainCtrl");
 
 		    circularBar({{ collection.progress }});
 			var labels = [
@@ -113,5 +111,14 @@
 {% else %}
     <p>The collection is empty.</p>
 {% endif %}
+<script type="text/javascript">
+        document.getElementsByTagName("html")[0].setAttribute("ng-app","plunker");
+        document.getElementsByTagName("body")[0].setAttribute("ng-controller", "MainCtrl");
+</script>
+{% load staticfiles %}
+<script>document.write('<base href="' + document.location + '" />');</script>
+<link rel="stylesheet" href="{% static 'css/ng-tags-input.min/ng-tags-input.min.css' %}" />
+<script src="{% static 'css/ng-tags-input.min/ng-tags-input.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/ng-tags-input.min/ng-tags-input.bootstrap.min.css' %}" />
 
 {% endblock %}

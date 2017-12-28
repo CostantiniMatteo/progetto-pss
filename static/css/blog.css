@@ -152,3 +152,7 @@ ul {
 textarea {
     resize: none;
 }
+
+.img{
+    margin: auto;
+}

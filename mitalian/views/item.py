@@ -29,7 +29,7 @@ def item(request, pk):
             next_item_url = _get_next_item_url(request)
             return redirect(next_item_url)
     else:
-        form = { 'image': item.image, 'labels': item.collection.labels }
+        form = { 'image': item.name, 'labels': item.collection.labels }
 
 
     return render(request, 'item.html', {'form': form})
