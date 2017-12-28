@@ -19,7 +19,9 @@
                     <a href="{% url 'detail' collection.id %}">{{ collection.name }}</a>
                 </div>
                 <div class="col-sm-3" id="Coll-info">
-                    <img src="{% static 'images/down-icon.png' %}" width="30" height="30" align="right">
+                    <a href="{% url 'download-results' collection.id %}">
+                        <img src="{% static 'images/down-icon.png' %}" width="30" height="30" align="right">
+                    </a>
                     <div class="c100 p{{ collection.progress }} small">
                       <div class="slice">
                         <div class="bar"></div>

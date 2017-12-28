@@ -11,4 +11,9 @@ def truncate_collection(request, pk):
 
     Item.objects.filter(collection=collection).delete()
 
-    return redirect('../collections')
+    collection.total_images = 0
+    collection.labelled_images = 0
+    collection.progress = 0
+    collection.save()
+
+    return redirect('.')
