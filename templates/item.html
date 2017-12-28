@@ -13,13 +13,16 @@
         <form method="post" id="form1">
             {% csrf_token %}
             <div class="form-group">
-                <label for="sel1">Select list (select one):</label>
+                <label for="sel2">Select list (select one):</label>
                 <select name="label" multiple class="form-control" id="sel2">
-                        <option value='1'>1</option>
+                    {% for label in collection.labels %}
+                        <option value='{{ label }}'>{{ label }}</option>
+                        <!-- <option value='1'>1</option>
                         <option value='2'>2</option>
                         <option value='3'>3</option>
                         <option value='4'>4</option>
-                        <option value='5'>5</option>
+                        <option value='5'>5</option> -->
+                    {% endfor %}
                 </select>
             </div>
             <input type='submit' name='submit'/>

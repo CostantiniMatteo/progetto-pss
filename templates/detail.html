@@ -27,25 +27,7 @@
 		</style>
 		<script type="text/javascript">
 		window.onload=function(){
-
 		    circularBar({{ collection.progress }});
-			var labels = [
-				{% for obj in collection.labels %}
-					{'text' : "{{ obj }}" },
-				{% endfor %}
-				];
-
-			console.log(labels);
-			fillTags(labels);
-
-
-
-            // var para = document.createElement("p");
-            // var node = document.createTextNode("{{ collection.labelled_images}}/{{ collection.total_images }}");
-            // para.appendChild(node);
-
-            // var element = document.getElementsByTagName("svg")[0];
-            // element.appendChild(para);
 		}
 		</script>
 		<script>
@@ -120,5 +102,12 @@
 <link rel="stylesheet" href="{% static 'css/ng-tags-input.min/ng-tags-input.min.css' %}" />
 <script src="{% static 'css/ng-tags-input.min/ng-tags-input.min.js' %}"></script>
 <link rel="stylesheet" href="{% static 'css/ng-tags-input.min/ng-tags-input.bootstrap.min.css' %}" />
-
+<script type="text/javascript">
+    var labels = [
+    {% for obj in collection.labels %}
+        {'text' : "{{ obj }}" },
+    {% endfor %}
+    ];
+    fillTags(labels);
+</script>
 {% endblock %}
