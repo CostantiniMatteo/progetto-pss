@@ -18,17 +18,17 @@ def begin_labelling(request, pk):
                 raise PermissionDenied()
 
             # Load images
-            fetched_items = collection.item_set.order_by('-votes_number')[:200]
+            fetched_items = list(collection.item_set.order_by('-votes_number')[:200])
             random.shuffle(fetched_items)
             fetched_items = fetched_items[:50]
-            request.session['fetched_items'] = list(fetched_items)
+            request.session['fetched_items'] = fetched_items
 
             # Redirect to the first one
             if len(fetched_items) > 0:
                 try:
-                    request.session['labelling'].append(collection.name)
+                    request.session['labelling'].append(collection.pk)
                 except:
-                    request.session['labelling'] = [collection.name]
+                    request.session['labelling'] = [collection.pk]
 
                 return redirect('../item/{}'.format(fetched_items[0].pk))
             else:
