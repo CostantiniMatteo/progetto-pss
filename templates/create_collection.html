@@ -1,12 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<script type="text/javascript">
-    window.onload=function(){
-        document.getElementsByTagName("html")[0].setAttribute("ng-app","plunker");
-        document.getElementsByTagName("body")[0].setAttribute("ng-controller", "MainCtrl");
-    }
-</script>
+
 <script>
     //Questo script aggiunge i tag nel tag input del form
     app.controller('MainCtrl', function($scope, $http) {
@@ -31,6 +26,7 @@
         $("#formColl").submit();
     }
 </script>
+
 <div>
   <h2>New Collection</h2>
   <form method="post" id="formColl">
@@ -53,4 +49,17 @@
         <button onclick="submitFunc()" type="submit" name="_submit" class="btn btn-success">Create</button>
     </form>
 </div>
+<script type="text/javascript">
+    //window.onload=function(){
+        document.getElementsByTagName("html")[0].setAttribute("ng-app","plunker");
+        document.getElementsByTagName("body")[0].setAttribute("ng-controller", "MainCtrl");
+    //}
+</script>
+{% load staticfiles %}
+<script>document.write('<base href="' + document.location + '" />');</script>
+<link rel="stylesheet" href="{% static 'css/ng-tags-input.min/ng-tags-input.min.css' %}" />
+<link rel="stylesheet" href="{% static 'css/ng-tags-input.min/ng-tags-input.bootstrap.min.css' %}" />
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.js"></script>
+<script src="{% static 'css/ng-tags-input.min/ng-tags-input.min.js' %}"></script>
+<script src="{% static 'css/app.js' %}"></script>
 {% endblock %}
