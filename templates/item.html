@@ -14,16 +14,17 @@
             {% csrf_token %}
             <div class="form-group">
                 <label for="sel1">Select list (select one):</label>
-                <select multiple class="form-control" id="sel2">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                <select name="label" multiple class="form-control" id="sel2">
+                        <option value='1'>1</option>
+                        <option value='2'>2</option>
+                        <option value='3'>3</option>
+                        <option value='4'>4</option>
+                        <option value='5'>5</option>
                 </select>
             </div>
+            <input type='submit' name='submit'/>
         </form>
-        <button action="." type="submit" form="form1" value="Submit">Submit</button>
+        <!-- <button action="." type="submit" form="form1" value="Submit">Submit</button> -->
     </div>
 {% else %}
 <p>You are not logged in. Please <a href="{%url 'login' %}">log in</a>

@@ -10,7 +10,7 @@ from IPython import embed
 
 @transaction.atomic
 def item(request, pk):
-    item = get_object_or_404(Item, pk=pk)
+    item = get_object_or_404 (Item, pk=pk)
 
     try:
         if item.collection.pk not in request.session['labelling']:
@@ -21,6 +21,7 @@ def item(request, pk):
     if request.method == 'POST':
         if True:
             # Cose
+            embed()
             choice = 'hardcoded'
             item.labels[choice] += 1
             item.votes_number += 1
