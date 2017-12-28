@@ -5,7 +5,7 @@ from django.contrib.postgres.fields import ArrayField
 
 class Collection(models.Model):
     name = models.CharField(max_length=256)
-    description = models.CharField(max_length=256, null=True, blank=True)
+    description = models.CharField(max_length=256)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     # labeled images / total images
     progress = models.IntegerField()
