@@ -11,9 +11,10 @@ from IPython import embed
 @transaction.atomic
 def item(request, pk):
     item = get_object_or_404 (Item, pk=pk)
-
+    collection = item.collection
+    embed()
     try:
-        if item.collection.pk not in request.session['labelling']:
+        if collection.pk not in request.session['labelling']:
             raise PermissionDenied()
     except KeyError:
         raise PermissionDenied()
@@ -21,11 +22,22 @@ def item(request, pk):
     if request.method == 'POST':
         if True:
             # Cose
-            choice = 'hardcoded'
+            choice = request.POST.dict()['label']
+
+            if choice not in collection.labels:
+                # TODO: Error message in the same page
+                raise Exception()
+
+
             item.labels[choice] += 1
             item.votes_number += 1
-            item.label = max(item.labels.iteritems(), key=op.itemgetter(1))[0]
+            # TODO: Handle equal case and set to ''
+            item.label = max(item.labels.items(), key=op.itemgetter(1))[0]
+
+            collection.labelled_items += 1;
+            collection.progress = int(collection.labelled_items / collection.total_images * 100)
             item.save()
+            collection.save()
 
             next_item_url = get_next_item_url(request, item.collection)
             return redirect(next_item_url)
