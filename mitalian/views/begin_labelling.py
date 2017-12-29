@@ -11,7 +11,6 @@ def begin_labelling(request, pk):
     if request.method == 'POST':
         form = BeginLabellingForm(request.POST)
         if form.is_valid():
-            # Check password
             collection = get_object_or_404(Collection, pk=pk)
             if collection.password != form.cleaned_data.get('password'):
                 raise PermissionDenied()

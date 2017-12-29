@@ -17,6 +17,7 @@ class Item(models.Model):
     votes_number = models.IntegerField()
     image = models.FilePathField(max_length=256)
 
+    # As for Collection, F() expressions would be better
     def add_vote(self, label):
         self.labels[label] += 1
         self.votes_number += 1

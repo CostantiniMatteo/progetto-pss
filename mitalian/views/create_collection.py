@@ -16,6 +16,7 @@ def create_collection(request):
 
             collection.init(request.user)
             collection.save()
+            # ^ We need to call save() first to get a primary-key
             relative_url = '/begin-labelling/%d' % collection.pk
             collection.link = request.build_absolute_uri(relative_url)
             collection.save()

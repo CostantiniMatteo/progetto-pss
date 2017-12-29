@@ -30,6 +30,7 @@ def item(request, pk):
                 raise Exception()
 
             item.add_vote(choice)
+            # Count as a new labelled image only the first time
             if item.votes_number == 1:
                 collection.increase_labelled_count(1)
                 collection.save()

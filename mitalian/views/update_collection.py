@@ -23,34 +23,10 @@ def update_collection(request, pk):
         form = UpdateCollectionForm(request.POST, request.FILES)
         if form.is_valid():
             zip_file = ZipFile(request.FILES['zip_file'])
-            # for name in zip_file.namelist():
-            #     data = zip_file.read(name)
 
-            #     try:
-            #         from PIL import Image
-            #         image = Image.open(BytesIO(data))
-            #         image.load()
-            #     except:
-            #         # TODO: Redirect to an error message
-            #         raise Exception()
-
-            #     name = os.path.split(name)[1]
-            #     path = os.path.join(settings.MEDIA_ROOT,
-            #                         name)
-            #     saved_path = default_storage.save(path, ContentFile(data))
-
-            #     item = Item(name=name,
-            #                 collection=collection,
-            #                 label='',
-            #                 labels={k: 0 for k in collection.labels},
-            #                 votes_number=0,
-            #                 image=saved_path)
-            #     item.save()
-
-            # Update images count
-            # collection.total_images += len(zip_file.infolist())
             collection.update(zip_file)
             collection.save()
+
             return redirect('../detail/%d' % collection.pk)
 
         elif collection.user != request.user:

@@ -38,14 +38,16 @@ class Collection(models.Model):
         password = User.objects.make_random_password(length=10)
         self.password = password
 
-
+    # Would be nice to use F() expressions which are faster
     def increase_labelled_count(self, count):
         self.labelled_images += count;
         self.progress = int(self.labelled_images / self.total_images * 100)
 
 
     def truncate(self):
+        # Import here to avoid recursive import
         from . import Item
+
         Item.objects.filter(collection=self).delete()
 
         self.total_images = 0
@@ -54,7 +56,9 @@ class Collection(models.Model):
 
 
     def update(self, zip_file):
+        # Import here to avoid recursive import
         from . import Item
+
         for name in zip_file.namelist():
             data = zip_file.read(name)
 
