@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load staticfiles %}
+<script src="{% static 'js/app.js' %}"></script>
 <script>
     //Questo script aggiunge i tag nel tag input del form
     app.controller('MainCtrl', function($scope, $http) {

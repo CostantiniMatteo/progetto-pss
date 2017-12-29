@@ -10,6 +10,7 @@ from IPython import embed
 
 @transaction.atomic
 def item(request, pk):
+    embed()
     item = get_object_or_404 (Item, pk=pk)
 
     try:
@@ -21,7 +22,6 @@ def item(request, pk):
     if request.method == 'POST':
         if True:
             # Cose
-            embed()
             choice = 'hardcoded'
             item.labels[choice] += 1
             item.votes_number += 1
