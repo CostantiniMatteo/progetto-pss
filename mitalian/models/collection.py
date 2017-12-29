@@ -19,5 +19,9 @@ class Collection(models.Model):
     # Password required to labels images of this collection
     password = models.TextField()
 
+    def increse_labelled_count(self, count):
+        self.labelled_images += count;
+        self.progress = int(self.labelled_images / self.total_images * 100)
+
     def __str__(self):
         return self.name

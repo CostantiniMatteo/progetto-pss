@@ -17,5 +17,17 @@ class Item(models.Model):
     votes_number = models.IntegerField()
     image = models.FilePathField(max_length=256)
 
+    def add_vote(self, label):
+        self.labels[label] += 1
+        self.votes_number += 1
+
+        maxs = [key for key in self.labels.keys()
+                    if self.labels[key] == max(self.labels.values())]
+        self.label = maxs[0] if len(maxs) == 1 else ''
+
+
+    def is_valid_label(self, label):
+        return label in self.collection.labels
+
     def __str__(self):
         return self.name

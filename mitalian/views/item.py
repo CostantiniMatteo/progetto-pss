@@ -6,12 +6,11 @@ from django.core.exceptions import PermissionDenied
 from django.db import transaction
 
 from ..models import Item
-from IPython import embed
-import pdb
+
 
 @transaction.atomic
 def item(request, pk):
-    item = get_object_or_404 (Item, pk=pk)
+    item = get_object_or_404(Item, pk=pk)
     collection = item.collection
 
     try:
@@ -26,21 +25,13 @@ def item(request, pk):
             # Cose
             choice = request.POST.dict()['label']
 
-            if choice not in collection.labels:
+            if not item.is_valid_label(choice):
                 # TODO: Error message in the same page
                 raise Exception()
 
-
-            item.labels[choice] += 1
-            item.votes_number += 1
-
-            maxs = [key for key in item.labels.keys()
-                        if item.labels[key] == max(item.labels.values())]
-            item.label = maxs[0] if len(maxs) == 1 else ''
-
+            item.add_vote(choice)
             if item.votes_number == 1:
-                collection.labelled_images += 1;
-                collection.progress = int(collection.labelled_images / collection.total_images * 100)
+                collection.increase_labelled_count(1)
                 collection.save()
             item.save()
 
