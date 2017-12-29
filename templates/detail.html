@@ -60,10 +60,11 @@
                         <a href="{% url 'delete-collection' collection.id %}">
                             <button type="submit" class="btn btn-success">Delete</button>
                         </a>
+                        <br><br><br>
+                        <a href="{{ collection.link }}">Begin Labelling</a>
                         <br><br>
-                        <a href="{{ collection.link }}">{{ collection.link }}</a>
-                        <br>
-                        {{ collection.password }}
+                        <span>Password: {{ collection.password }}</span>
+                        <br><br>
                     </div>
 
 				<div class="col-lg-3" style="text-align: center; margin: auto;">

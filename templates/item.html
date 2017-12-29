@@ -9,23 +9,20 @@
 
 {% if user.is_authenticated %}
     <img id="img" src="/media/{{ form.image }}" class="img-thumbnail">
-    <div class="container">
+    <br><br><br>
+    <div class="container-fluid">
         <form method="post" id="form1">
             {% csrf_token %}
             <div class="form-group">
-                <label for="sel2">Select list (select one):</label>
+                <label for="sel2">Select label:</label>
                 <select name="label" multiple class="form-control" id="sel2">
-                    {% for label in collection.labels %}
+                    {% for label in form.labels %}
                         <option value='{{ label }}'>{{ label }}</option>
-                        <!-- <option value='1'>1</option>
-                        <option value='2'>2</option>
-                        <option value='3'>3</option>
-                        <option value='4'>4</option>
-                        <option value='5'>5</option> -->
                     {% endfor %}
                 </select>
             </div>
-            <input type='submit' name='submit'/>
+            <br><br>
+            <button type="submit" class="btn btn-success">Submit</button>
         </form>
         <!-- <button action="." type="submit" form="form1" value="Submit">Submit</button> -->
     </div>
