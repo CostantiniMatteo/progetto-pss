@@ -9,11 +9,7 @@ def truncate_collection(request, pk):
     if request.user != collection.user:
         raise PermissionDenied()
 
-    Item.objects.filter(collection=collection).delete()
-
-    collection.total_images = 0
-    collection.labelled_images = 0
-    collection.progress = 0
+    collection.truncate()
     collection.save()
 
-    return redirect('.')
+    return redirect('collections')

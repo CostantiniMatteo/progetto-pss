@@ -14,13 +14,7 @@ def create_collection(request):
                 # TODO: Terrible. Find another way.
                 raise HttpResponseBadRequest("Labels contain duplicates")
 
-            collection.user = request.user
-            collection.progress = 0
-            collection.total_images = 0
-            collection.labelled_images = 0
-            password = User.objects.make_random_password(length=10)
-            collection.password = password
-
+            collection.init(request.user)
             collection.save()
             relative_url = '/begin-labelling/%d' % collection.pk
             collection.link = request.build_absolute_uri(relative_url)

@@ -12,20 +12,10 @@ def download_results(request, pk):
     response['Content-Disposition'] = 'attachment; \
         filename="results-{}.csv"'.format(pk)
 
-
     collection = get_object_or_404(Collection, pk=pk)
     if request.user != collection.user:
         raise PermissionDenied()
 
-    images = collection.item_set.all()
-
-    # / can't be used in filenames so we are sure that a / can only appear
-    # as a separator
-    writer = csv.writer(response, delimiter='/')
-    for image in images:
-        if image.label is None:
-            writer.writerow([image.name, ''])
-        else:
-            writer.writerow([image.name, image.label])
+    collection.write_csv(response)
 
     return response
