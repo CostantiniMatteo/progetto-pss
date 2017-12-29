@@ -120,4 +120,4 @@ Studenti
 
    * Matteo Colella - 794028
    * Matteo Costantini - 795125
-   * Gerosa Dario 793636
+   * Dario Gerosa 793636
