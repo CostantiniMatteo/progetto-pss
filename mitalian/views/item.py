@@ -31,8 +31,10 @@ def item(request, pk):
 
             item.labels[choice] += 1
             item.votes_number += 1
-            # TODO: Handle equal case and set to ''
-            item.label = max(item.labels.items(), key=op.itemgetter(1))[0]
+
+            maxs = [key for key in i.labels.keys()
+                        if i.labels[key] == max(i.labels.values())]
+            item.label = maxs[0] if len(maxs) == 1 else ''
 
             collection.labelled_items += 1;
             collection.progress = int(collection.labelled_items / collection.total_images * 100)
