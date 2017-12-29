@@ -9,7 +9,8 @@ from ..models import Collection
 
 def download_results(request, pk):
     response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="somefilename.csv"'
+    response['Content-Disposition'] = 'attachment; \
+        filename="results-{}.csv"'.format(pk)
 
 
     collection = get_object_or_404(Collection, pk=pk)
