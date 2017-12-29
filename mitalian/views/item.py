@@ -7,12 +7,13 @@ from django.db import transaction
 
 from ..models import Item
 from IPython import embed
+import pdb
 
 @transaction.atomic
 def item(request, pk):
     item = get_object_or_404 (Item, pk=pk)
     collection = item.collection
-    embed()
+
     try:
         if collection.pk not in request.session['labelling']:
             raise PermissionDenied()
@@ -32,12 +33,12 @@ def item(request, pk):
             item.labels[choice] += 1
             item.votes_number += 1
 
-            maxs = [key for key in i.labels.keys()
-                        if i.labels[key] == max(i.labels.values())]
+            maxs = [key for key in item.labels.keys()
+                        if item.labels[key] == max(item.labels.values())]
             item.label = maxs[0] if len(maxs) == 1 else ''
 
-            collection.labelled_items += 1;
-            collection.progress = int(collection.labelled_items / collection.total_images * 100)
+            collection.labelled_images += 1;
+            collection.progress = int(collection.labelled_images / collection.total_images * 100)
             item.save()
             collection.save()
 
@@ -51,6 +52,7 @@ def item(request, pk):
 
 def get_next_item_url(request, collection):
     # Load images
+    pdb.set_trace()
     try:
         # TODO: Manage different sessions
         if request.session['fetched_items'][collection.pk]:
