@@ -22,7 +22,7 @@ def create_collection(request):
             collection.password = password
 
             collection.save()
-            relative_url = '/labelling/%d' % collection.pk
+            relative_url = '/begin-labelling/%d' % collection.pk
             collection.link = request.build_absolute_uri(relative_url)
             collection.save()
 
