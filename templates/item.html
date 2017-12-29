@@ -7,7 +7,6 @@
 
 {% block content %}
 
-{% if user.is_authenticated %}
     <img id="img" src="/media/{{ form.image }}" class="img-thumbnail">
     <br><br><br>
     <div class="container-fluid">
@@ -26,8 +25,5 @@
         </form>
         <!-- <button action="." type="submit" form="form1" value="Submit">Submit</button> -->
     </div>
-{% else %}
-<p>You are not logged in. Please <a href="{%url 'login' %}">log in</a>
-{% endif %}
 
 {% endblock %}

@@ -21,6 +21,7 @@ def item(request, pk):
         raise PermissionDenied()
 
     if request.method == 'POST':
+        # if label is valid
         if True:
             # Cose
             choice = request.POST.dict()['label']
@@ -37,10 +38,11 @@ def item(request, pk):
                         if item.labels[key] == max(item.labels.values())]
             item.label = maxs[0] if len(maxs) == 1 else ''
 
-            collection.labelled_images += 1;
-            collection.progress = int(collection.labelled_images / collection.total_images * 100)
+            if item.votes_number == 1:
+                collection.labelled_images += 1;
+                collection.progress = int(collection.labelled_images / collection.total_images * 100)
+                collection.save()
             item.save()
-            collection.save()
 
             next_item_url = get_next_item_url(request, item.collection)
             return redirect(next_item_url)
@@ -52,9 +54,7 @@ def item(request, pk):
 
 def get_next_item_url(request, collection):
     # Load images
-    pdb.set_trace()
     try:
-        # TODO: Manage different sessions
         if request.session['fetched_items'][collection.pk]:
             next_item = request.session['fetched_items'][collection.pk].pop()
 
