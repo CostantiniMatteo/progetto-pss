@@ -10,7 +10,6 @@ from IPython import embed
 
 @transaction.atomic
 def item(request, pk):
-    embed()
     item = get_object_or_404 (Item, pk=pk)
 
     try:
@@ -39,22 +38,24 @@ def item(request, pk):
 def get_next_item_url(request, collection):
     # Load images
     try:
-        if request.session['fetched_items']:
-            next_item = request.session['fetched_items'].pop()
+        # TODO: Manage different sessions
+        if request.session['fetched_items'][collection.pk]:
+            next_item = request.session['fetched_items'][collection.pk].pop()
 
             return '../item/{}'.format(next_item.pk)
         else:
             _fetch_items(request, collection)
     except KeyError:
+        request.session['fetched_items'] = {}
         _fetch_items(request, collection)
 
-    if request.session['fetched_items']:
+    if request.session['fetched_items'][collection.pk]:
         try:
             request.session['labelling'].append(collection.pk)
         except:
             request.session['labelling'] = [collection.pk]
 
-        next_item = request.session['fetched_items'].pop()
+        next_item = request.session['fetched_items'][collection.pk].pop()
         return '../item/{}'.format(next_item.pk)
     else:
         # TODO: Maybe a page saying that the collection is empty
@@ -66,4 +67,4 @@ def _fetch_items(request, collection):
     fetched_items = list(collection.item_set.order_by('-votes_number')[:200])
     random.shuffle(fetched_items)
     fetched_items = fetched_items[:50]
-    request.session['fetched_items'] = fetched_items
+    request.session['fetched_items'][collection.pk] = fetched_items
