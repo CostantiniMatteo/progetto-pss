@@ -18,7 +18,9 @@ def download_results(request, pk):
 
     images = collection.item_set.all()
 
-    writer = csv.writer(response, delimiter=' ')
+    # / can't be used in filenames so we are sure that a / can only appear
+    # as a separator
+    writer = csv.writer(response, delimiter='/')
     for image in images:
         if image.label is None:
             writer.writerow([image.name, ''])
