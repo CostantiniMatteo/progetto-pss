@@ -17,11 +17,9 @@ class Collection(models.Model):
     name = models.CharField(max_length=256)
     description = models.CharField(max_length=256)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    # labeled images / total images
-    # TODO: Try a property
-    progress = models.IntegerField()
     total_images = models.IntegerField()
     labelled_images = models.IntegerField()
+    _progress = 0
     # Allowed labels for collection's images
     labels = ArrayField(models.CharField(max_length=256))
     # Where you can label images of this collection
@@ -29,6 +27,13 @@ class Collection(models.Model):
     # Password required to labels images of this collection
     password = models.TextField()
 
+    @property
+    def progress(self):
+        return int(self.labelled_images / self.total_images * 100)
+
+    @progress.setter
+    def progress(self, value):
+        self._progress = value
 
     def init(self, user):
         self.user = user
