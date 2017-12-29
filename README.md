@@ -3,6 +3,21 @@ Processo e Sviluppo del Software - Labeling Immagini
 
 Assignment progettuale del corso di Processo e Sviluppo del Software.
 
+TODOs:
+------
+#### Backend:
+  * Filtri
+  * Capire come utilizzare i messaggi di errore dei form
+  * Sistemare gli import
+  * Documentare
+  * Testarla come si deve
+
+#### Frontend:
+  * Bug label in create_collection
+  * Dropdown menu in item.html
+  * Bug circular-bar
+  * Link begin-labelling in chiaro
+
 
 Prerequisiti
 ------------

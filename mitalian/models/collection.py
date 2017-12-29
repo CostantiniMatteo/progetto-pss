@@ -11,8 +11,6 @@ from django.core.files.base import ContentFile
 from django.conf import settings
 
 
-
-# TODO: Maybe add some methods
 class Collection(models.Model):
     name = models.CharField(max_length=256)
     description = models.CharField(max_length=256)
