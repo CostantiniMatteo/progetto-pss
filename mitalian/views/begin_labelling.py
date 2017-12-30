@@ -20,8 +20,8 @@ def begin_labelling(request, pk):
             except Http404:
                 return render(request,
                               'empty_collection.html',
-                              {'collection': collection})
+                              { 'collection': collection })
     else:
         form = BeginLabellingForm()
 
-    return render(request, 'begin_labelling.html', {'form': form})
+    return render(request, 'begin_labelling.html', { 'form': form })

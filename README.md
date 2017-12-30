@@ -3,21 +3,6 @@ Processo e Sviluppo del Software - Labelling Immagini
 
 Assignment progettuale del corso di Processo e Sviluppo del Software.
 
-Credenziali Macchina Virtuale
------------------------------
-
-##### Ubuntu:
-Username: `progettopss`
-Password: `progettopss`
-
-##### Django:
-Username: `admin`
-Password: `hunter2`
-
-##### PostgreSQL:
-Username: `admin`
-Password: `admin`
-
 
 Prerequisiti
 ------------
@@ -37,7 +22,7 @@ Per installare Python su Windows è possibile utilizzare l'installer ottenibile 
 
 Si consiglia l'uso di `pyenv` per installare una versione pulita ed evitare conflitti con altre versioni installate e/o librerie.
 
-##### Pyenv su macOS:
+##### macOS:
 
 ```
 $ brew install pyenv
@@ -111,10 +96,20 @@ $ sudo -u postgres psql
 psql=# alter user admin with encrypted password 'admin';
 ```
 
+##### Windows:
+Dopo aver installato Postgres utilizzando l'installer:
+```
+$ psql -U postgres
+
+postgres=# create user admin with password 'admin';
+
+```
+
 ##### Creare il database (indipendentemente dal sistema operativo):
 
 ```
-$ psql (oppure sudo -u postgres psql)
+$ psql         # oppure: sudo -u postgres psql
+               # oppure ancora: psql -U postgres
 psql=# create database mitalian with owner admin;
 ```
 
@@ -131,7 +126,7 @@ $ pip install -r requirements.txt
 
 Creare ed applicare le migrazioni:
 ```
-$ ./manage.py makemigrations
+$ ./manage.py makemigrations        # oppure: python manage.py makemigrations
 $ ./manage.py migrate
 
 # In alternativa python manage.py
@@ -149,6 +144,23 @@ Avviare il server (raggiungibile a `localhost:8000`):
 ```
 $ ./manage.py runserver
 ```
+
+
+Credenziali Macchina Virtuale
+-----------------------------
+
+##### Ubuntu:
+Username: `progettopss`
+Password: `progettopss`
+
+##### Django:
+Username: `admin`
+Password: `hunter2`
+
+##### PostgreSQL:
+Username: `admin`
+Password: `admin`
+
 
 Studenti
 --------

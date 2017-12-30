@@ -27,7 +27,7 @@ def item(request, pk):
                         'image': item.name,
                         'labels': item.collection.labels,
                         'error': 'Please, select a label' }
-            return render(request, 'item.html', {'form': form})
+            return render(request, 'item.html', { 'form': form })
 
         if not item.is_valid_label(choice):
             raise ValueError('Label not valid')
@@ -44,11 +44,10 @@ def item(request, pk):
     else:
         form = { 'image': item.name, 'labels': item.collection.labels }
 
-    return render(request, 'item.html', {'form': form})
+    return render(request, 'item.html', { 'form': form })
 
 
 def get_next_item_url(request, collection):
-    # Load images
     try:
         if request.session['fetched_items'][collection.pk]:
             next_item = request.session['fetched_items'][collection.pk].pop()
