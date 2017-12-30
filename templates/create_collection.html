@@ -3,12 +3,24 @@
 {% block content %}
 {% load staticfiles %}
 <script src="{% static 'js/app.js' %}"></script>
+<script type="text/javascript">
+    window.onload = function(){
+        var input = document.getElementById('id_labels');
+        input.value = '';
+    };
+</script>
 <script>
     //Questo script aggiunge i tag nel tag input del form
     app.controller('MainCtrl', function($scope, $http) {
-        $scope.ActionFreeText = function(tag) {
+        $scope.AddTag = function(tag) {
             var input = document.getElementById('id_labels');
             input.value = input.value + tag.text + ",";
+        }
+
+        $scope.RemoveTag = function(tag) {
+            console.log(tag.text);
+            var input = document.getElementById('id_labels');
+            input.value = input.value.replace(tag.text + ',', '');
         }
     });
 
@@ -43,7 +55,8 @@
         <div hidden>{{ form.labels }}</div>
         <!--<div id="example1" class="input textarea"></div>
             <p id="log"></p>-->
-            <tags-input ng-model="tags" placeholder="Add a label" on-tag-added="ActionFreeText($tag)" use-strings="true"></tags-input>
+            <tags-input ng-model="tags" placeholder="Add a label" on-tag-added="AddTag($tag)"
+            on-tag-removed="RemoveTag($tag)" use-strings="true"></tags-input>
 
         </div>
         <br>
