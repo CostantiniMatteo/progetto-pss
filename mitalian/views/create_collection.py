@@ -12,7 +12,7 @@ def create_collection(request):
             collection = form.save(commit=False)
 
             if len(collection.labels) > len(set(collection.labels)):
-                form.add_error('labels_plicates', 'All labels must be unique')
+                form.add_error('labels', 'All labels must be unique')
                 return render(request, 'create_collection.html', {'form': form})
 
             collection.init(request.user)

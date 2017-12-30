@@ -24,7 +24,7 @@ def update_collection(request, pk):
                 collection.update(zip_file)
                 collection.save()
             except ValueError:
-                form.add_error('zip_content',
+                form.add_error('zip_file',
                                'Zip file must contain only images')
                 return render(request,
                               'update_collection.html',
