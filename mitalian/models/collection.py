@@ -70,8 +70,7 @@ class Collection(models.Model):
                 image = Image.open(BytesIO(data))
                 image.load()
             except:
-                # TODO: Redirect to an error message
-                raise Exception()
+                raise ValueError('Zip must contain only images')
 
             name = os.path.split(name)[1]
             path = os.path.join(settings.MEDIA_ROOT,

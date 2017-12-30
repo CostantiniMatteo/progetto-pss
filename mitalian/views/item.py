@@ -26,8 +26,7 @@ def item(request, pk):
             choice = request.POST.dict()['label']
 
             if not item.is_valid_label(choice):
-                # TODO: Error message in the same page
-                raise Exception()
+                raise ValueError('Label not valid')
 
             item.add_vote(choice)
             # Count as a new labelled image only the first time
@@ -67,7 +66,6 @@ def get_next_item_url(request, collection):
         return '../item/{}'.format(next_item.pk)
     else:
         # TODO: Maybe a page saying that the collection is empty
-        # See Django Forms error messages
         return '../home'
 
 

@@ -26,8 +26,18 @@ def update_collection(request, pk):
         if form.is_valid():
             zip_file = ZipFile(request.FILES['zip_file'])
 
-            collection.update(zip_file)
-            collection.save()
+            try:
+                collection.update(zip_file)
+                collection.save()
+            except ValueError:
+                form.add_error('zip_content',
+                               'Zip file must contain only images')
+                return render(request,
+                              'update_collection.html',
+                              {
+                                'form': form,
+                                'collection': collection,
+                              })
 
             return redirect('../detail/%d' % collection.pk)
     else:
