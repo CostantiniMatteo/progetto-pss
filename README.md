@@ -68,7 +68,7 @@ $ pip install -r requirements.txt
 
 
 ##### Installare PostgreSQL (DA RIVEDERE):
-Scaricare ed installare PostgreSQL a [questo indirizzo](https://www.postgresql.org/download/) e creare un utente con nome `admin` e password `admin`. Per creare l'utente:
+Scaricare ed installare PostgreSQL-10 a [questo indirizzo](https://www.postgresql.org/download/) e creare un utente con nome `admin` e password `admin`. Per creare l'utente:
 ```
 $ sudo -u postgres createuser <username>
 
@@ -80,7 +80,7 @@ psql=# alter user <username> with encrypted password '<password>';
 ##### Creare il database (DA RIVEDERE):
 
 ```
-$ psql
+$ psql (oppure sudo -u postgres psql)
 psql=# create database mitalian with owner admin;
 ```
 
