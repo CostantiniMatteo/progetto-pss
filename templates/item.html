@@ -14,8 +14,8 @@
             {% csrf_token %}
             <div class="form-group">
                 <p style="color: red;"><b>{{ form.error }}</b></p>
-                <label for="sel2">Select label:</label>
-                <select name="label" multiple class="form-control" id="sel2">
+                <label for="sel1">Select label:</label>
+                <select name="label" class="form-control" id="sel1">
                     {% for label in form.labels %}
                         <option value='{{ label }}'>{{ label }}</option>
                     {% endfor %}
