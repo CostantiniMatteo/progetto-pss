@@ -17,7 +17,6 @@ class Collection(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     total_images = models.IntegerField()
     labelled_images = models.IntegerField()
-    _progress = 0
     # Allowed labels for collection's images
     labels = ArrayField(models.CharField(max_length=256))
     # Where you can label images of this collection
@@ -27,15 +26,13 @@ class Collection(models.Model):
 
     @property
     def progress(self):
-        return int(self.labelled_images / self.total_images * 100)
+        if self.total_images == 0:
+            return 0
 
-    @progress.setter
-    def progress(self, value):
-        self._progress = value
+        return int(self.labelled_images / self.total_images * 100)
 
     def init(self, user):
         self.user = user
-        self.progress = 0
         self.total_images = 0
         self.labelled_images = 0
         password = User.objects.make_random_password(length=10)
@@ -44,7 +41,6 @@ class Collection(models.Model):
     # Would be nice to use F() expressions which are faster
     def increase_labelled_count(self, count):
         self.labelled_images += count;
-        self.progress = int(self.labelled_images / self.total_images * 100)
 
 
     def truncate(self):
@@ -55,7 +51,6 @@ class Collection(models.Model):
 
         self.total_images = 0
         self.labelled_images = 0
-        self.progress = 0
 
 
     def update(self, zip_file):

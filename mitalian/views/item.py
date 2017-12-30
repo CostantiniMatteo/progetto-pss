@@ -2,6 +2,7 @@ import operator as op
 import random
 
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import  Http404
 from django.core.exceptions import PermissionDenied
 from django.db import transaction
 
@@ -65,8 +66,7 @@ def get_next_item_url(request, collection):
         next_item = request.session['fetched_items'][collection.pk].pop()
         return '../item/{}'.format(next_item.pk)
     else:
-        # TODO: Maybe a page saying that the collection is empty
-        return '../home'
+        raise Http404()
 
 
 def _fetch_items(request, collection):

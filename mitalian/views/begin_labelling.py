@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.exceptions import PermissionDenied
+from django.http import  Http404
 
 from ..forms import BeginLabellingForm
 from ..models import Collection
@@ -14,7 +15,12 @@ def begin_labelling(request, pk):
             if collection.password != form.cleaned_data.get('password'):
                 raise PermissionDenied()
 
-            return redirect(get_next_item_url(request, collection))
+            try:
+                return redirect(get_next_item_url(request, collection))
+            except Http404:
+                return render(request,
+                              'empty_collection.html',
+                              {'collection': collection})
     else:
         form = BeginLabellingForm()
 

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Empty Collection{% endblock %}
+{% block content %}
+<h2>Collection is empty.</h2>
+<p>The collection you are looking for is empty. If you are the owner
+    of the collection, you can update it </p>
+    <a href="{% url 'update-collection' collection.id %}">here</a>.
+{% endblock %}
