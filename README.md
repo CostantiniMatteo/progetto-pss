@@ -1,4 +1,4 @@
-Processo e Sviluppo del Software - Labeling Immagini
+Processo e Sviluppo del Software - Labelling Immagini
 ====================================================
 
 Assignment progettuale del corso di Processo e Sviluppo del Software.
@@ -10,11 +10,11 @@ Credenziali Macchina Virtuale
 Username: `progettopss`
 Password: `progettopss`
 
-##### Utente amministratore Django:
+##### Django:
 Username: `admin`
 Password: `hunter2`
 
-##### Utente amministratore PostgreSQL:
+##### PostgreSQL:
 Username: `admin`
 Password: `admin`
 
@@ -22,16 +22,18 @@ Password: `admin`
 Prerequisiti
 ------------
 
-Per avviare il progetto è necessario avere installato python (versione 3.6.3).
+Per avviare il progetto è necessario avere installato Python (versione 3.6.3) e PostgreSQL 10.
 
-### Windows:
+### Python:
+
+#### Windows:
 
 Per installare Python su Windows è possibile utilizzare l'installer ottenibile a [questo indirizzo](https://www.python.org/downloads/).
 
 **NB:** Installare anche `pip` in quanto sarà necessario per installare le dipendenze del progetto.
 
 
-### macOS - Linux:
+#### macOS - Linux:
 
 Si consiglia l'uso di `pyenv` per installare una versione pulita ed evitare conflitti con altre versioni installate e/o librerie.
 
@@ -63,7 +65,7 @@ $ pyenv update
 
 Ulteriori informazioni sull'installazione di pyenv [qui](https://github.com/pyenv/pyenv-installer).
 
-##### Installazione python 3.6.3:
+##### Installazione Python 3.6.3:
 
 Dopo aver installato pyenv, installare python 3.6.3
 ```
@@ -71,16 +73,8 @@ $ pyenv install 3.6.3
 ```
 Nel repository del progetto dovrebbe essere già presente il file `.python-version` che permettere di utilizzare la versione di python corretta. Qualore non fosse presente, utilizzare il comando `pyenv local 3.6.3`.
 
-Installazione
--------------
 
-Installare tutte le dipendenze del progetto (potrebbero essere necessari i privilegi di amministratore):
-```
-$ pip install -r requirements.txt
-```
-
-
-#### Installare PostgreSQL:
+### PostgreSQL:
 [Scaricare](https://www.postgresql.org/download/) ed installare PostgreSQL-10 e creare un utente con nome `admin` e password `admin`. Per creare l'utente:
 
 ##### macOS:
@@ -124,8 +118,14 @@ $ psql (oppure sudo -u postgres psql)
 psql=# create database mitalian with owner admin;
 ```
 
-Avvio
------
+Installazione e Avvio
+-------------
+
+Installare tutte le dipendenze del progetto (potrebbero essere necessari i privilegi di amministratore):
+```
+$ pip install -r requirements.txt
+```
+
 
 ##### Migrazioni:
 
