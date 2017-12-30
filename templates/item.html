@@ -13,6 +13,7 @@
         <form method="post" id="form1">
             {% csrf_token %}
             <div class="form-group">
+                <p style="color: red;"><b>{{ form.error }}</b></p>
                 <label for="sel2">Select label:</label>
                 <select name="label" multiple class="form-control" id="sel2">
                     {% for label in form.labels %}

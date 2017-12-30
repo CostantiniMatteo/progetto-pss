@@ -20,23 +20,27 @@ def item(request, pk):
         raise PermissionDenied()
 
     if request.method == 'POST':
-        # if label is valid
-        if True:
-            # Cose
+        try:
             choice = request.POST.dict()['label']
+        except KeyError:
+            form = {
+                        'image': item.name,
+                        'labels': item.collection.labels,
+                        'error': 'Please, select a label' }
+            return render(request, 'item.html', {'form': form})
 
-            if not item.is_valid_label(choice):
-                raise ValueError('Label not valid')
+        if not item.is_valid_label(choice):
+            raise ValueError('Label not valid')
 
-            item.add_vote(choice)
-            # Count as a new labelled image only the first time
-            if item.votes_number == 1:
-                collection.increase_labelled_count(1)
-                collection.save()
-            item.save()
+        item.add_vote(choice)
+        # Count as a new labelled image only the first time
+        if item.votes_number == 1:
+            collection.increase_labelled_count(1)
+            collection.save()
+        item.save()
 
-            next_item_url = get_next_item_url(request, item.collection)
-            return redirect(next_item_url)
+        next_item_url = get_next_item_url(request, item.collection)
+        return redirect(next_item_url)
     else:
         form = { 'image': item.name, 'labels': item.collection.labels }
 
