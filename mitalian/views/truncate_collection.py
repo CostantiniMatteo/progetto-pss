@@ -2,7 +2,7 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 
-from ..models import Collection, Item
+from ..models import Collection
 
 
 @login_required

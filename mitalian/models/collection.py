@@ -1,6 +1,5 @@
 import os
 import csv
-from zipfile import ZipFile
 from io import BytesIO
 
 from django.db import models

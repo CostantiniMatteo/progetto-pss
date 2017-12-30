@@ -1,16 +1,10 @@
-import os
 from zipfile import ZipFile
-from io import BytesIO
 
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponseServerError
 from django.core.exceptions import PermissionDenied
-from django.core.files.storage import default_storage
-from django.core.files.base import ContentFile
-from django.conf import settings
 from django.contrib.auth.decorators import login_required
 
-from ..models import Collection, Item
+from ..models import Collection
 from ..forms import UpdateCollectionForm
 
 
