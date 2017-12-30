@@ -3,8 +3,8 @@ Processo e Sviluppo del Software - Labeling Immagini
 
 Assignment progettuale del corso di Processo e Sviluppo del Software.
 
-Credenziali Macchina Virtuale:
-------------------------------
+Credenziali Macchina Virtuale
+-----------------------------
 
 ##### Ubuntu:
 Username: `progettopss`
@@ -19,8 +19,8 @@ Username: `admin`
 Password: `admin`
 
 
-Prerequisiti:
--------------
+Prerequisiti
+------------
 
 Per avviare il progetto è necessario avere installato python (versione 3.6.3).
 
@@ -71,8 +71,8 @@ $ pyenv install 3.6.3
 ```
 Nel repository del progetto dovrebbe essere già presente il file `.python-version` che permettere di utilizzare la versione di python corretta. Qualore non fosse presente, utilizzare il comando `pyenv local 3.6.3`.
 
-Installazione:
---------------
+Installazione
+-------------
 
 Installare tutte le dipendenze del progetto (potrebbero essere necessari i privilegi di amministratore):
 ```
@@ -80,22 +80,52 @@ $ pip install -r requirements.txt
 ```
 
 
-##### Installare PostgreSQL (DA RIVEDERE):
-Scaricare ed installare PostgreSQL-10 a [questo indirizzo](https://www.postgresql.org/download/) e creare un utente con nome `admin` e password `admin`. Per creare l'utente:
+#### Installare PostgreSQL:
+[Scaricare](https://www.postgresql.org/download/) ed installare PostgreSQL-10 e creare un utente con nome `admin` e password `admin`. Per creare l'utente:
+
+##### macOS:
+Scaricare la versione Postgres.app
+
+##### Linux:
+
+Su Ubuntu 16.04 è stato installato nel seguente modo:
+
+In `/etc/apt/sources.list.d/pgdg.list` aggiungere:
 ```
-$ sudo -u postgres createuser <username>
+deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main
+
+```
+
+Poi copia-incollare nel terminale:
+```
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
+  sudo apt-key add -
+sudo apt-get update
+```
+
+Installare PostgreSQL:
+```
+$ sudo apt-get install postgresql-10
+```
+
+
+```
+$ sudo -u postgres createuser admin
 
 $ sudo -u postgres psql
 
-psql=# alter user <username> with encrypted password '<password>';
+psql=# alter user admin with encrypted password 'admin';
 ```
 
-##### Creare il database (DA RIVEDERE):
+##### Creare il database (indipendentemente dal sistema operativo):
 
 ```
 $ psql (oppure sudo -u postgres psql)
 psql=# create database mitalian with owner admin;
 ```
+
+Avvio
+-----
 
 ##### Migrazioni:
 
@@ -120,8 +150,8 @@ Avviare il server (raggiungibile a `localhost:8000`):
 $ ./manage.py runserver
 ```
 
-Studenti:
----------
+Studenti
+--------
 
    * Matteo Colella - 794028
    * Matteo Costantini - 795125
