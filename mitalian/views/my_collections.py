@@ -1,9 +1,10 @@
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from ..models import Collection
 
 
-class CollectionsView(generic.ListView):
+class CollectionsView(LoginRequiredMixin, generic.ListView):
     template_name = 'my_collections.html'
     context_object_name = 'collections_list'
 

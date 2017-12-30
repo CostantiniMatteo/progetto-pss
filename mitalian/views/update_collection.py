@@ -8,16 +8,18 @@ from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 from ..models import Collection, Item
 from ..forms import UpdateCollectionForm
 
 
+@login_required
 def update_collection(request, pk):
-    if not request.user.is_authenticated:
-        return redirect('../login')
-
     collection = get_object_or_404(Collection, pk=pk)
+
+    if collection.user != request.user:
+        raise PermissionDenied()
 
     if request.method == 'POST':
         form = UpdateCollectionForm(request.POST, request.FILES)
@@ -28,10 +30,6 @@ def update_collection(request, pk):
             collection.save()
 
             return redirect('../detail/%d' % collection.pk)
-
-        elif collection.user != request.user:
-            raise PermissionDenied()
-
     else:
         form = UpdateCollectionForm()
 

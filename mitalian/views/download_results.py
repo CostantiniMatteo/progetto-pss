@@ -3,10 +3,12 @@ import csv
 from django.http import HttpResponse
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
 
 from ..models import Collection
 
 
+@login_required
 def download_results(request, pk):
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; \

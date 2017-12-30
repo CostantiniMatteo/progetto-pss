@@ -6,7 +6,6 @@ from ..models import Collection
 from . import get_next_item_url
 
 
-# TOOD: Check if this works even if the user is not logged in
 def begin_labelling(request, pk):
     if request.method == 'POST':
         form = BeginLabellingForm(request.POST)

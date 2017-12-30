@@ -123,7 +123,9 @@ USE_L10N = True
 USE_TZ = True
 
 
+# Used to serialize Items and save them into sessions
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+# For convenience since it has to be saved on every post on /item/pk
 SESSION_SAVE_EVERY_REQUEST = True
 
 # Static files (CSS, JavaScript, Images)
@@ -141,4 +143,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'

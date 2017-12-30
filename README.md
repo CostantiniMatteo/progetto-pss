@@ -6,7 +6,6 @@ Assignment progettuale del corso di Processo e Sviluppo del Software.
 TODOs:
 ------
 #### Backend:
-  * Filtri
   * Capire come utilizzare i messaggi di errore dei form
   * Sistemare gli import
   * Documentare
