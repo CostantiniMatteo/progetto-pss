@@ -3,16 +3,24 @@ Processo e Sviluppo del Software - Labeling Immagini
 
 Assignment progettuale del corso di Processo e Sviluppo del Software.
 
-TODOs:
-------
-#### Backend:
-  * Sistemare gli import
-  * Documentare
-  * Testarla come si deve
+Credenziali Macchina Virtuale:
+------------------------------
+
+##### Ubuntu:
+Username: `progettopss`
+Password: `progettopss`
+
+##### Utente amministratore Django:
+Username: `admin`
+Password: `hunter2`
+
+##### Utente amministratore PostgreSQL:
+Username: `admin`
+Password: `admin`
 
 
-Prerequisiti
-------------
+Prerequisiti:
+-------------
 
 Per avviare il progetto è necessario avere installato python (versione 3.6.3).
 
@@ -33,11 +41,10 @@ Si consiglia l'uso di `pyenv` per installare una versione pulita ed evitare conf
 $ brew install pyenv
 ```
 
-##### Github way:
+##### Linux:
 
 ```
 $ curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
-$ pyenv update
 ```
 
 In `~/.bashrc` aggiungere:
@@ -46,6 +53,12 @@ In `~/.bashrc` aggiungere:
 export PATH="~/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+```
+
+Infine:
+
+```
+$ pyenv update
 ```
 
 Ulteriori informazioni sull'installazione di pyenv [qui](https://github.com/pyenv/pyenv-installer).
@@ -58,8 +71,8 @@ $ pyenv install 3.6.3
 ```
 Nel repository del progetto dovrebbe essere già presente il file `.python-version` che permettere di utilizzare la versione di python corretta. Qualore non fosse presente, utilizzare il comando `pyenv local 3.6.3`.
 
-Installazione
--------------
+Installazione:
+--------------
 
 Installare tutte le dipendenze del progetto (potrebbero essere necessari i privilegi di amministratore):
 ```
@@ -107,8 +120,8 @@ Avviare il server (raggiungibile a `localhost:8000`):
 $ ./manage.py runserver
 ```
 
-Studenti
---------
+Studenti:
+---------
 
    * Matteo Colella - 794028
    * Matteo Costantini - 795125
