@@ -10,12 +10,6 @@ TODOs:
   * Documentare
   * Testarla come si deve
 
-#### Frontend:
-  * Bug label in create_collection
-  * Dropdown menu in item.html
-  * Bug circular-bar
-  * Link begin-labelling in chiaro
-
 
 Prerequisiti
 ------------
