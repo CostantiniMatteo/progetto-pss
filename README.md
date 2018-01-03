@@ -67,7 +67,7 @@ Nel repository del progetto dovrebbe essere già presente il file `.python-versi
 
 
 ### PostgreSQL:
-[Scaricare](https://www.postgresql.org/download/) ed installare PostgreSQL-10 e creare un utente con nome `admin` e password `admin`. Per creare l'utente:
+[Scaricare](https://www.postgresql.org/download/) ed installare PostgreSQL-10 e creare un utente con nome `admin` e password `admin`.
 
 ##### macOS:
 Scaricare la versione Postgres.app
