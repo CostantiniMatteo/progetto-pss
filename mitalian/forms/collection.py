@@ -6,4 +6,4 @@ from ..models import Collection
 class CollectionForm(ModelForm):
     class Meta:
         model = Collection
-        fields = ['name', 'labels']
+        fields = ['name', 'labels', 'description']

@@ -41,31 +41,37 @@
 </script>
 
 <div>
-  <h2>New Collection</h2>
-  <form method="post" id="formColl">
-    {% csrf_token %}
-    <div class="fieldWrapper">
-        {{ form.name.errors }}
-        <label for="{{ form.name.id_for_label }}">Name</label>
-        {{ form.name }}
-    </div>
-    <div class="fieldWrapper">
-        {{ form.labels.errors }}
-        <label for="{{ form.name.id_for_label }}">Labels</label>
-        <div hidden>{{ form.labels }}</div>
-        <!--<div id="example1" class="input textarea"></div>
-            <p id="log"></p>-->
-            <tags-input ng-model="tags" placeholder="Add a label" on-tag-added="AddTag($tag)"
-            on-tag-removed="RemoveTag($tag)" use-strings="true"></tags-input>
+    <h2>New Collection</h2>
+    <form method="post" id="formColl">
+        {% csrf_token %}
+        <div class="fieldWrapper">
+            {{ form.name.errors }}
+            <label for="{{ form.name.id_for_label }}">Name</label>
+            {{ form.name }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.labels.errors }}
+            <label for="{{ form.name.id_for_label }}">Labels</label>
+            <div hidden>{{ form.labels }}</div>
+            <!--<div id="example1" class="input textarea"></div>
+                <p id="log"></p>-->
+                <tags-input ng-model="tags" placeholder="Add a label" on-tag-added="AddTag($tag)"
+                on-tag-removed="RemoveTag($tag)" use-strings="true"></tags-input>
 
+        </div>
+        <br>
+        <div class="fieldWrapper">
+        {{ form.description.errors }}
+        <label for="{{ form.description.id_for_label }}">Description</label>
+        {{ form.description }}
         </div>
         <br>
         <button onclick="submitFunc()" type="submit" name="_submit" class="btn btn-success">Create</button>
     </form>
 </div>
 <script type="text/javascript">
-        document.getElementsByTagName("html")[0].setAttribute("ng-app","plunker");
-        document.getElementsByTagName("body")[0].setAttribute("ng-controller", "MainCtrl");
+    document.getElementsByTagName("html")[0].setAttribute("ng-app","plunker");
+    document.getElementsByTagName("body")[0].setAttribute("ng-controller", "MainCtrl");
 </script>
 {% load staticfiles %}
 <script>document.write('<base href="' + document.location + '" />');</script>
