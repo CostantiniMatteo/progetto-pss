@@ -31,6 +31,10 @@ class Collection(models.Model):
         return int(self.labelled_images / self.total_images * 100)
 
     def init(self, user):
+        """
+        Utility function to correctly initialize a collection object
+        before saving it.
+        """
         self.user = user
         self.total_images = 0
         self.labelled_images = 0
@@ -43,6 +47,9 @@ class Collection(models.Model):
 
 
     def truncate(self):
+        """
+        Delete all the items of the collection.
+        """
         # Import here to avoid recursive import
         from . import Item
 
@@ -53,10 +60,15 @@ class Collection(models.Model):
 
 
     def update(self, zip_file):
+        """
+        Add all the images contained in the zip_file to the collection.
+        Raises a ValueError if the zip doesn't contain only images.
+        """
         # Import here to avoid recursive import
         from . import Item
 
-        for name in zip_file.namelist():
+        files = [x for x in zip_file.namelist() if x.find('__MACOSX') == -1]
+        for name in files:
             data = zip_file.read(name)
 
             try:
