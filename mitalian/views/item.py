@@ -72,7 +72,20 @@ def get_next_item_url(request, collection):
 
 
 def _fetch_items(request, collection):
-    fetched_items = list(collection.item_set.order_by('-votes_number')[:200])
-    random.shuffle(fetched_items)
-    fetched_items = fetched_items[:50]
+    tmp = list(collection.item_set.order_by('-votes_number')[:200])
+
+    # fetched_items = [item for item in tmp
+    #   if item.votes_number == min(tmp, key=lambda x: x.votes_number).votes_number
+    #       and not tmp.remove(item)]
+    fetched_items = []
+    min_votes = min(tmp, key=lambda x: x.votes_number).votes_number
+    for item in tmp:
+        if item.votes_number == min_votes:
+            tmp.remove(item)
+            fetched_items.append(item)
+
+    if len(fetched_items) < 50 and tmp:
+        random.shuffle(tmp)
+        fetched_items += tmp[:50 - len(fetched_items)]
+
     request.session['fetched_items'][collection.pk] = fetched_items

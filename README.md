@@ -3,6 +3,13 @@ Processo e Sviluppo del Software - Labelling Immagini
 
 Assignment progettuale del corso di Processo e Sviluppo del Software.
 
+Indice
+------
+  * [Prerequisiti](#prerequisiti)
+     * [Python:](#python)
+     * [PostgreSQL:](#postgresql)
+  * [Installazione e Avvio](#installazione-e-avvio)
+  * [Studenti](#studenti)
 
 Prerequisiti
 ------------
@@ -72,7 +79,6 @@ Su Ubuntu 16.04 è stato installato nel seguente modo:
 In `/etc/apt/sources.list.d/pgdg.list` aggiungere:
 ```
 deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main
-
 ```
 
 Poi copia-incollare nel terminale:
@@ -102,7 +108,6 @@ Dopo aver installato Postgres utilizzando l'installer:
 $ psql -U postgres
 
 postgres=# create user admin with password 'admin';
-
 ```
 
 ##### Creare il database (indipendentemente dal sistema operativo):
@@ -144,22 +149,6 @@ Avviare il server (raggiungibile a `localhost:8000`):
 ```
 $ ./manage.py runserver
 ```
-
-
-Credenziali Macchina Virtuale
------------------------------
-
-##### Ubuntu:
-Username: `progettopss`
-Password: `progettopss`
-
-##### Django:
-Username: `admin`
-Password: `hunter2`
-
-##### PostgreSQL:
-Username: `admin`
-Password: `admin`
 
 
 Studenti
