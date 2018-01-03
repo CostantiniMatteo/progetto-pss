@@ -14,7 +14,10 @@
             {% csrf_token %}
             <div class="form-group">
                 <p style="color: red;"><b>{{ form.error }}</b></p>
-                <label for="sel1">Select label:</label>
+                <label>Select label:</label><br>
+                <p style="color: #aaaaaa; font-size: smaller;">
+                    Shortcut: The first 9 labels are binded to numbers from 1 to 9
+                </p><br>
                 <select name="label" class="form-control" id="sel1">
                     {% for label in form.labels %}
                         <option value='{{ label }}'>{{ label }}</option>
@@ -24,7 +27,20 @@
             <br><br>
             <button type="submit" class="btn btn-success">Submit</button>
         </form>
-        <!-- <button action="." type="submit" form="form1" value="Submit">Submit</button> -->
     </div>
+
+    <script type="text/javascript">
+        $(window).keypress(function (e) {
+            //use e.which
+            var keyCode = e.which;
+            var baseCode = 49;
+            {% for label in form.labels %}
+            if (keyCode == baseCode + {{ forloop.counter0 }}) {
+                document.getElementById('sel1').value='{{ label }}';
+                document.getElementById("form1").submit();
+            }
+            {% endfor %}
+        })
+    </script>
 
 {% endblock %}
