@@ -27,9 +27,10 @@ label[for=id_username],
 label[for=id_password],
 label[for=id_password1],
 label[for=id_password2],
-label[for=id_name] {
+label[for=id_name],
+label[for=id_description] {
 	font-size: medium;
-	color: #9e9e9e;
+	color: #444444;
 	margin-top: 15px;
 }
 

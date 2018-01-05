@@ -2,13 +2,13 @@
 
 {% load static %}
 
-{% block title %} Item {% endblock %}
+{% block title %}MI - Labelling{% endblock %}
 
 
 {% block content %}
 
     <img id="img" src="/media/{{ form.image }}" class="img-thumbnail">
-    <br><br><br>
+    <br>
     <div class="container-fluid">
         <form method="post" id="form1">
             {% csrf_token %}
@@ -17,14 +17,14 @@
                 <label>Select label:</label><br>
                 <p style="color: #aaaaaa; font-size: smaller;">
                     Shortcut: The first 9 labels are binded to numbers from 1 to 9
-                </p><br>
+                </p>
                 <select name="label" class="form-control" id="sel1">
                     {% for label in form.labels %}
                         <option value='{{ label }}'>{{ label }}</option>
                     {% endfor %}
                 </select>
             </div>
-            <br><br>
+            <br>
             <button type="submit" class="btn btn-success">Submit</button>
         </form>
     </div>

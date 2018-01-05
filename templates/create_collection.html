@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% block title %}MI - Create Collection{% endblock %}
 {% block content %}
 {% load staticfiles %}
 <script src="{% static 'js/app.js' %}"></script>
@@ -50,33 +51,39 @@
             {{ form.name }}
         </div>
         <div class="fieldWrapper">
-            {{ form.labels.errors }}
             <label for="{{ form.name.id_for_label }}">Labels</label>
+            <p style="color: #aaaaaa; font-size: smaller;">
+                Use 'Tab', 'Enter' or ',' as separator.
+            </p>
             <div hidden>{{ form.labels }}</div>
+        </div>
             <!--<div id="example1" class="input textarea"></div>
                 <p id="log"></p>-->
                 <tags-input ng-model="tags" placeholder="Add a label" on-tag-added="AddTag($tag)"
                 on-tag-removed="RemoveTag($tag)" use-strings="true"></tags-input>
+                {% if form.labels.errors %}
+                <br><p>{{ form.labels.errors}}</p>
+                {% endif %}
 
-        </div>
-        <br>
-        <div class="fieldWrapper">
-        {{ form.description.errors }}
-        <label for="{{ form.description.id_for_label }}">Description</label>
-        {{ form.description }}
-        </div>
-        <br>
-        <button onclick="submitFunc()" type="submit" name="_submit" class="btn btn-success">Create</button>
-    </form>
-</div>
-<script type="text/javascript">
-    document.getElementsByTagName("html")[0].setAttribute("ng-app","plunker");
-    document.getElementsByTagName("body")[0].setAttribute("ng-controller", "MainCtrl");
-</script>
-{% load staticfiles %}
-<script>document.write('<base href="' + document.location + '" />');</script>
-<link rel="stylesheet" href="{% static 'css/ng-tags-input.min/ng-tags-input.min.css' %}" />
-<script src="{% static 'css/ng-tags-input.min/ng-tags-input.min.js' %}"></script>
-<link rel="stylesheet" href="{% static 'css/ng-tags-input.min/ng-tags-input.bootstrap.min.css' %}" />
+            </div>
+            <br>
+            <div class="fieldWrapper">
+                {{ form.description.errors }}
+                <label for="{{ form.description.id_for_label }}">Description</label>
+                {{ form.description }}
+            </div>
+            <br>
+            <button onclick="submitFunc()" type="submit" name="_submit" class="btn btn-success">Create</button>
+        </form>
+    </div>
+    <script type="text/javascript">
+        document.getElementsByTagName("html")[0].setAttribute("ng-app","plunker");
+        document.getElementsByTagName("body")[0].setAttribute("ng-controller", "MainCtrl");
+    </script>
+    {% load staticfiles %}
+    <script>document.write('<base href="' + document.location + '" />');</script>
+    <link rel="stylesheet" href="{% static 'css/ng-tags-input.min/ng-tags-input.min.css' %}" />
+    <script src="{% static 'css/ng-tags-input.min/ng-tags-input.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/ng-tags-input.min/ng-tags-input.bootstrap.min.css' %}" />
 
-{% endblock %}
+    {% endblock %}

@@ -1,5 +1,5 @@
 Processo e Sviluppo del Software - Labelling Immagini
-====================================================
+=====================================================
 
 Assignment progettuale del corso di Processo e Sviluppo del Software.
 

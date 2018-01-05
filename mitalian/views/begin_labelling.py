@@ -8,10 +8,11 @@ from . import get_next_item_url
 
 
 def begin_labelling(request, pk):
+    collection = get_object_or_404(Collection, pk=pk)
+
     if request.method == 'POST':
         form = BeginLabellingForm(request.POST)
         if form.is_valid():
-            collection = get_object_or_404(Collection, pk=pk)
             if collection.password != form.cleaned_data.get('password'):
                 raise PermissionDenied()
 
@@ -24,4 +25,9 @@ def begin_labelling(request, pk):
     else:
         form = BeginLabellingForm()
 
-    return render(request, 'begin_labelling.html', { 'form': form })
+    return render(request,
+                  'begin_labelling.html',
+                  {
+                    'form': form,
+                    'collection': collection
+                  })

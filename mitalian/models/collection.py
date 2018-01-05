@@ -94,15 +94,19 @@ class Collection(models.Model):
 
 
     def write_csv(self, out):
-        # / can't be used in filenames so we are sure that a / can only appear
-        # as a separator
+        # / can't be used in filenames so we are sure that a / can only
+        # appear as a separator.
         writer = csv.writer(out, delimiter='/')
         images = self.item_set.all()
+
+        # A row is in a friendly format (label/filename) if someone want
+        # to move every image in a different directory since the
+        # relative path is already built.
         for image in images:
             if image.label is None:
-                writer.writerow([image.name, ''])
+                writer.writerow(['', image.name])
             else:
-                writer.writerow([image.name, image.label])
+                writer.writerow([image.label, image.name])
 
 
     def __str__(self):

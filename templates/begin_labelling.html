@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}Labelling{% endblock %}
+{% block title %}MI - Begin Labelling {{ collection.name }}{% endblock %}
 {% block content %}
-<h2>Login</h2>
+<h2>{{ collection.name }}</h2>
 <form class="form-horizontal" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" name="_submit" class="btn btn-success">Login</button>
+    <button type="submit" name="_submit" class="btn btn-success">Submit</button>
 </form>
 {% endblock %}

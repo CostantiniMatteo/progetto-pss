@@ -24,6 +24,7 @@ class Item(models.Model):
 
         maxs = [key for key in self.labels.keys()
                     if self.labels[key] == max(self.labels.values())]
+        # If two or more labels have the same votes no label will be choosen
         self.label = maxs[0] if len(maxs) == 1 else ''
 
 

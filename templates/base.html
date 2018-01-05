@@ -3,7 +3,11 @@
 <head>
     {% load staticfiles %}
     <meta charset="utf-8">
-    <title>{% block title %}Django Simple Login{% endblock %}</title>
+    <title>
+    {% block title %}
+        Mechanical Italian
+        {% if user.is_authenticated %} - {{ user.username }}{% endif %}
+    {% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="{% static 'js/jquery.min.js' %}"></script>
