@@ -9,7 +9,7 @@ from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.conf import settings
 
-
+import pdb
 class Collection(models.Model):
     name = models.CharField(max_length=256)
     description = models.CharField(max_length=256)
@@ -67,7 +67,11 @@ class Collection(models.Model):
         # Import here to avoid recursive import
         from . import Item
 
-        files = [x for x in zip_file.namelist() if x.find('__MACOSX') == -1]
+        files = [x for x in zip_file.namelist()
+                    if not x.startswith('__MACOSX')
+                        and not x.endswith('.DS_Store')
+                        and not x.endswith('/')]
+        pdb.set_trace()
         for name in files:
             data = zip_file.read(name)
 
@@ -75,7 +79,8 @@ class Collection(models.Model):
                 from PIL import Image
                 image = Image.open(BytesIO(data))
                 image.load()
-            except:
+            except Exception as e:
+                print(e)
                 raise ValueError('Zip must contain only images')
 
             name = os.path.split(name)[1]

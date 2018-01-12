@@ -7,7 +7,6 @@ from django.db import transaction
 
 from ..models import Item
 
-
 @transaction.atomic
 def item(request, pk):
     item = get_object_or_404(Item, pk=pk)
@@ -51,7 +50,7 @@ def item(request, pk):
 def get_next_item_url(request, collection):
     try:
         if request.session['fetched_items'][collection.pk]:
-            next_item = request.session['fetched_items'][collection.pk].pop()
+            next_item = request.session['fetched_items'][collection.pk].pop(0)
 
             return '../item/{}'.format(next_item.pk)
         else:
@@ -77,23 +76,24 @@ def _fetch_items(request, collection):
     Fetch up to 50 items and save them in session to avoid querying the
     database at every request.
     """
-    tmp = list(collection.item_set.order_by('-votes_number')[:200])
-    fetched_items = []
+    tmp = list(collection.item_set.order_by('votes_number')[:200])
 
+    fetched_items = []
+    left = []
     if tmp:
-        # First, take all the items with fewer votes so that very item will
-        # be seen at least once before showing the images again.
-        min_votes = min(tmp, key=lambda x: x.votes_number).votes_number
-        fetched_items = [item for item in tmp if item.votes_number == min_votes
-                            and not tmp.remove(item)]
-        # for item in tmp:
-        #     if item.votes_number == min_votes:
-        #         tmp.remove(item)
-        #         fetched_items.append(item)
+        # First, take all the items with fewer votes so that every item
+        # will be seen at least once before showing the images again.
+        min_votes = tmp[0].votes_number
+
+        for item in tmp:
+            if item.votes_number == min_votes and len(fetched_items) < 50:
+                fetched_items.append(item)
+            else:
+                left.append(item)
 
         # Then randomly fetch the others
-        if len(fetched_items) < 50 and tmp:
-            random.shuffle(tmp)
-            fetched_items += tmp[:50 - len(fetched_items)]
+        if len(fetched_items) < 50 and left:
+            random.shuffle(left)
+            fetched_items += left[:50 - len(fetched_items)]
 
     request.session['fetched_items'][collection.pk] = fetched_items
