@@ -9,7 +9,7 @@ from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.conf import settings
 
-import pdb
+
 class Collection(models.Model):
     name = models.CharField(max_length=256)
     description = models.CharField(max_length=256)
@@ -71,7 +71,6 @@ class Collection(models.Model):
                     if not x.startswith('__MACOSX')
                         and not x.endswith('.DS_Store')
                         and not x.endswith('/')]
-        pdb.set_trace()
         for name in files:
             data = zip_file.read(name)
 
