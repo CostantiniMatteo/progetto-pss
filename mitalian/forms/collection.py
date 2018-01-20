@@ -16,7 +16,6 @@ class CollectionForm(ModelForm):
         fields = ['name', 'labels', 'description']
 
     def is_valid(self):
-
         valid = super(CollectionForm, self).is_valid()
 
         if not valid:

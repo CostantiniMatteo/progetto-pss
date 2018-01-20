@@ -13,9 +13,8 @@ def create_collection(request):
 
             if len(collection.labels) > len(set(collection.labels)):
                 form.add_error('labels', 'All labels must be unique')
-                return render(request,
-                              'create_collection.html',
-                              { 'form': form })
+                return render(request, 'create_collection.html',
+                    { 'form': form })
 
             collection.init(request.user)
             collection.save()

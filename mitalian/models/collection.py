@@ -9,12 +9,14 @@ from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.conf import settings
 
+from .item import Item
 
 class Collection(models.Model):
     name = models.CharField(max_length=256)
     description = models.CharField(max_length=256)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     total_images = models.IntegerField()
+    # Cache the number in the collection to retrieve it easly
     labelled_images = models.IntegerField()
     # Allowed labels for collection's images
     labels = ArrayField(models.CharField(max_length=256))
@@ -34,12 +36,14 @@ class Collection(models.Model):
         """
         Utility function to correctly initialize a collection object
         before saving it.
+        Sets to zero total_images and labelled_images, the owner of the
+        collection to the user passed as an argument and generate a random
+        password for the collection.
         """
         self.user = user
         self.total_images = 0
         self.labelled_images = 0
-        password = User.objects.make_random_password(length=10)
-        self.password = password
+        self.password = User.objects.make_random_password(length=10)
 
     # Would be nice to use F() expressions which are faster
     def increase_labelled_count(self, count):
@@ -50,9 +54,6 @@ class Collection(models.Model):
         """
         Delete all the items of the collection.
         """
-        # Import here to avoid recursive import
-        from . import Item
-
         Item.objects.filter(collection=self).delete()
 
         self.total_images = 0
@@ -63,10 +64,8 @@ class Collection(models.Model):
         """
         Add all the images contained in the zip_file to the collection.
         Raises a ValueError if the zip doesn't contain only images.
+        A Django request is a file-like object and can be passed as zip_file.
         """
-        # Import here to avoid recursive import
-        from . import Item
-
         files = [x for x in zip_file.namelist()
                     if not x.startswith('__MACOSX')
                         and not x.endswith('.DS_Store')

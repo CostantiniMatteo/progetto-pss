@@ -12,11 +12,10 @@ def item(request, pk):
     item = get_object_or_404(Item, pk=pk)
     collection = item.collection
 
-    try:
-        if collection.pk not in request.session['labelling']:
-            raise PermissionDenied()
-    except KeyError:
+
+    if collection.pk not in request.session.get('labelling', {}):
         raise PermissionDenied()
+
 
     if request.method == 'POST':
         try:

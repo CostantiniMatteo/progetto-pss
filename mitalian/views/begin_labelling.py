@@ -19,15 +19,10 @@ def begin_labelling(request, pk):
             try:
                 return redirect(get_next_item_url(request, collection))
             except Http404:
-                return render(request,
-                              'empty_collection.html',
-                              { 'collection': collection })
+                return render(request, 'empty_collection.html',
+                    { 'collection': collection })
     else:
         form = BeginLabellingForm()
 
-    return render(request,
-                  'begin_labelling.html',
-                  {
-                    'form': form,
-                    'collection': collection
-                  })
+    return render(request, 'begin_labelling.html',
+        {'form': form, 'collection': collection})
