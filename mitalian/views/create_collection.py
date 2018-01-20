@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 from ..forms import CollectionForm
 
@@ -18,12 +19,8 @@ def create_collection(request):
 
             collection.init(request.user)
             collection.save()
-            # ^ We need to call save() first to get a primary-key
-            relative_url = '/begin-labelling/%d' % collection.pk
-            collection.link = request.build_absolute_uri(relative_url)
-            collection.save()
 
-            return redirect('../update-collection/{}'.format(collection.pk))
+            return redirect('update-collection', pk=collection.pk)
     else:
         form = CollectionForm()
 

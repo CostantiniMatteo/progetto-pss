@@ -61,7 +61,7 @@
                             <button type="submit" class="btn btn-success">Delete</button>
                         </a>
                         <br><br><br>
-                        <a href="{{ collection.link }}">{{ collection.link }}</a>
+                        <a href="{% url 'begin-labelling' collection.id %}">{{ request.get_host }}{% url 'begin-labelling' collection.id %}</a>
                         <br><br>
                         <span>Password: {{ collection.password }}</span>
                         <br><br>

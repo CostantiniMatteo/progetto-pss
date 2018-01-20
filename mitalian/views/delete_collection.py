@@ -1,6 +1,7 @@
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 from ..models import Collection
 
@@ -14,4 +15,4 @@ def delete_collection(request, pk):
 
     collection.delete()
 
-    return redirect('../collections')
+    return redirect('collections')

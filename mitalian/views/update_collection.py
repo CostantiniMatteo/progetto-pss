@@ -37,9 +37,5 @@ def update_collection(request, pk):
     else:
         form = UpdateCollectionForm()
 
-    return render(request,
-                  'update_collection.html',
-                  {
-                    'form': form,
-                    'collection': collection,
-                  })
+    return render(request, 'update_collection.html',
+        { 'form': form, 'collection': collection })

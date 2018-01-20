@@ -25,4 +25,4 @@ def begin_labelling(request, pk):
         form = BeginLabellingForm()
 
     return render(request, 'begin_labelling.html',
-        {'form': form, 'collection': collection})
+        { 'form': form, 'collection': collection })

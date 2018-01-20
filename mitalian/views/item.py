@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import  Http404
 from django.core.exceptions import PermissionDenied
 from django.db import transaction
+from django.shortcuts import redirect
+from django.urls import reverse
 
 from ..models import Item
 
@@ -51,7 +53,7 @@ def get_next_item_url(request, collection):
         if request.session['fetched_items'][collection.pk]:
             next_item = request.session['fetched_items'][collection.pk].pop(0)
 
-            return '../item/{}'.format(next_item.pk)
+            return reverse('item', args=[next_item.pk])
         else:
             _fetch_items(request, collection)
     except KeyError:
@@ -65,7 +67,7 @@ def get_next_item_url(request, collection):
             request.session['labelling'] = [collection.pk]
 
         next_item = request.session['fetched_items'][collection.pk].pop()
-        return '../item/{}'.format(next_item.pk)
+        return reverse('item', args=[next_item.pk])
     else:
         raise Http404()
 
